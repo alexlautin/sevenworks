@@ -2,13 +2,8 @@ import Logo from "../icons/tmpLogo";
 
 export default function Navbar() {
     return (
-<<<<<<< HEAD
-        <div className = "flex flex-row p-4 gap-3 bg-navy text-white w-full text-offWhite text-l fixed top-0 right-0 left-0 z-3">
-            <div className = "flex flex-row items-center gap-5 w-full">
-=======
         <div className = "flex flex-row justify-center items-center p-4 gap-3 bg-navy text-white w-full h-fit text-offWhite text-l fixed top-0 right-0 left-0 z-3">
-            <div className = "flex flex-row justify-start items-center gap-5">
->>>>>>> e2c20b5313bb54d706cc44fd1c6d127d7fa18755
+            <div className = "flex flex-row justify-start w-full items-center gap-5">
                 <Logo />
                 <nav className = "flex flex-row gap-7 px-1 w-fit text-nowrap font-semibold">
                     <a href = "../templates">Resumes</a>

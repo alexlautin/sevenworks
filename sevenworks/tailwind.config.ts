@@ -14,7 +14,8 @@ export default {
         navy: '#2b2d42',
         lightRed: '#ef233c',
         offWhite: '#edf2f4',
-        darkRed: '#91031b'
+        darkRed: '#91031b',
+        lightGray: '#8d99ae'
       },
     },
   },
