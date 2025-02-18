@@ -1,6 +1,7 @@
 import Check from "../icons/check";
 
 export default function Landing() {
+    // my favorite function
     return(
         <div className = "flex flex-row w-full h-screen place-content-center gap-3 px-[100px] pb-[75px] bg-cover bg-gradient-to-b from-navy to-darkRed">
             <div className = "flex flex-col w-full justify-center items-start gap-[22px]">
