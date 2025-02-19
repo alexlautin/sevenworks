@@ -15,7 +15,7 @@ export default function Signup() {
     const router = useRouter();
 
     //Function is called when submit button pressed
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async function(e: React.FormEvent) {
         e.preventDefault();
         setPending(true);
 
@@ -70,6 +70,7 @@ export default function Signup() {
                     className = "text-offWhite text-[20px] bg-lightRed w-fit px-4 py-2 rounded-lg hover:bg-darkRed">
                         Sign Up
                     </button>
+                    <p>{error}</p>
                 </div>
             </form>
         </div>
