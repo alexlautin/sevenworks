@@ -4,7 +4,7 @@ import Check from "../icons/check";
 
 export default function Landing() {
     return (
-        <div className="flex flex-col w-full min-h-screen bg-gradient-to-b from-navy to-darkRed overflow-hidden">
+        <div className="flex flex-col w-full min-h-screen justify-center bg-gradient-to-b from-navy to-darkRed overflow-hidden">
             <div className="flex flex-col w-full h-full justify-center items-start gap-[22px] px-[100px] pb-[75px]">
                 <h1 className="max-w-[600px] text-[50px] text-offWhite font-extrabold">
                     Focus on your future, not formatting
