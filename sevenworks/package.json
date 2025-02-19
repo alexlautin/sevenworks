@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mantine/core": "^7.17.0",
+    "@mantine/hooks": "^7.17.0",
     "autoprefixer": "^10.4.20",
     "classnames": "^2.5.1",
     "next": "^15.1.7",
