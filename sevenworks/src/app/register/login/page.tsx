@@ -13,7 +13,7 @@ export default function Login() {
     const [error, setError] = useState("");
     const router = useRouter();
 
-    //Function is called upon submitting
+    //Function is called upon submitting 
     const handleSubmit = async function(e: React.FormEvent){
         e.preventDefault();
         setPending(true);
