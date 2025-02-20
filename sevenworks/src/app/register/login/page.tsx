@@ -4,7 +4,7 @@ import BackArrow from "../../icons/backArrow";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 
-export default function Login() {
+export default function Login() {  
 
     //defaults
     const [email, setEmail] = useState<string>("");
