@@ -6,7 +6,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 const handler = NextAuth({
     session: {
-        strategy: "jwt", //token-based approach
+        strategy: "jwt", //token-based approach 
     },
     providers: [
         CredentialsProvider({
