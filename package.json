@@ -8,9 +8,12 @@
   "dependencies": {
     "@mantine/core": "^7.17.0",
     "@mantine/hooks": "^7.17.0",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
     "classnames": "^2.5.1",
     "mongodb": "^6.13.0",
     "mongoose": "^8.10.1",
+    "next-auth": "^5.0.0-beta.25",
     "react-dropzone": "^14.3.5",
     "tailwind-merge": "^3.0.1"
   }

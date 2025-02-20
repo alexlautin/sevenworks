@@ -16,7 +16,7 @@
     "classnames": "^2.5.1",
     "mongoose": "^8.10.1",
     "next": "^15.1.7",
-    "next-auth": "^4.24.11",
+    "next-auth": "^5.0.0-beta.25",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-dropzone": "^14.3.5",
