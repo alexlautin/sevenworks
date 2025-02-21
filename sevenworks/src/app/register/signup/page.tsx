@@ -1,10 +1,10 @@
+// filepath: /Users/alexlautin/Documents/GitHub/sevenworks/sevenworks/src/app/register/signup/page.tsx
 "use client";
 import { useState } from "react";
 import BackArrow from "../../icons/backArrow";
 import { useRouter } from "next/navigation";
-import { auth } from "../../lib/firebase"; // Adjust the path based on your file structure
+import { auth } from "../../lib/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-
 
 export default function Signup() {
     const [form, setForm] = useState({
@@ -28,13 +28,18 @@ export default function Signup() {
 
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, form.email, form.password);
-            const user = userCredential.user;
+            console.log("User signed up:", userCredential.user); // Now the variable is "used"
             setPending(false);
             router.push("/register/login");
-        } catch (error: any) {
-            setError(error.message);
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                setError(error.message);
+            } else {
+                setError("An unknown error occurred");
+            }
             setPending(false);
         }
+        
     };
 
     return (
