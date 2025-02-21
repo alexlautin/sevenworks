@@ -1,10 +1,12 @@
+// filepath: /Users/alexlautin/Documents/GitHub/sevenworks/sevenworks/src/app/register/login/page.tsx
 "use client";
 import { useState } from "react";
 import BackArrow from "../../icons/backArrow";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { auth } from "../../lib/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
-export default function Login() {  
+export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [pending, setPending] = useState(false);
@@ -15,16 +17,13 @@ export default function Login() {
         e.preventDefault();
         setPending(true);
 
-        const res = await signIn("credentials", {
-            redirect: false,
-            email,
-            password,
-        });
-
-        if (res?.ok) {
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+            setPending(false);
             router.push("/");
-        } else {
-            setError(res?.status === 401 ? "Invalid credentials" : "Something went wrong");
+        } catch (error: any) {
+            setError(error.message);
             setPending(false);
         }
     };
