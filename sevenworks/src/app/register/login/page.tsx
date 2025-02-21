@@ -19,13 +19,18 @@ export default function Login() {
 
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            const user = userCredential.user;
+            console.log("User signed up:", userCredential.user); // Now the variable is "used"
             setPending(false);
-            router.push("/");
-        } catch (error: any) {
-            setError(error.message);
+            router.push("/register/login");
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                setError(error.message);
+            } else {
+                setError("An unknown error occurred");
+            }
             setPending(false);
         }
+        
     };
 
     return (
