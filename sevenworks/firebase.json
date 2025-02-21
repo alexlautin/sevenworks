@@ -1,11 +1,19 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "cleanUrls": true,
+    "rewrites": [
+      {
+        "source": "/**",
+        "destination": "/index.html"
+      }
     ]
+
   },
   "remoteconfig": {
     "template": "remoteconfig.template.json"

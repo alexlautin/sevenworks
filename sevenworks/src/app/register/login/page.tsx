@@ -1,16 +1,16 @@
-// filepath: /Users/alexlautin/Documents/GitHub/sevenworks/sevenworks/src/app/register/login/page.tsx
 "use client";
 import { useState } from "react";
 import BackArrow from "../../icons/backArrow";
 import { useRouter } from "next/navigation";
 import { auth } from "../../lib/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [pending, setPending] = useState(false);
     const [error, setError] = useState("");
+    const [resetMessage, setResetMessage] = useState("");
     const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -19,9 +19,9 @@ export default function Login() {
 
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            console.log("User signed up:", userCredential.user); // Now the variable is "used"
+            console.log("User signed up:", userCredential.user);
             setPending(false);
-            router.push("/register/login");
+            router.push("/landing"); // Redirect to the landing page
         } catch (error: unknown) {
             if (error instanceof Error) {
                 setError(error.message);
@@ -30,7 +30,19 @@ export default function Login() {
             }
             setPending(false);
         }
-        
+    };
+
+    const handlePasswordReset = async () => {
+        try {
+            await sendPasswordResetEmail(auth, email);
+            setResetMessage("Password reset email sent!");
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                setError(error.message);
+            } else {
+                setError("An unknown error occurred");
+            }
+        }
     };
 
     return (
@@ -64,7 +76,13 @@ export default function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                         className="w-full h-[50px] rounded-xl pl-4 shadow-md text-navy border border-gray-300 focus:ring-2 focus:ring-navy"
                     />
-                    <a href="#" className="text-gray-500 text-[14px] text-right hover:text-black">Forgot Password?</a>
+                    <button 
+                        type="button" 
+                        onClick={handlePasswordReset} 
+                        className="text-gray-500 text-[14px] text-right hover:text-black"
+                    >
+                        Forgot Password?
+                    </button>
                 </div>
 
                 <div className="flex justify-center mt-4">
@@ -78,6 +96,7 @@ export default function Login() {
                 </div>
 
                 {error && <p className="text-red-500 text-center mt-2">{error}</p>}
+                {resetMessage && <p className="text-green-500 text-center mt-2">{resetMessage}</p>}
             </form>
         </div>
     );
