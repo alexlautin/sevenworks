@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../lib/firebase"; // Import your Firebase auth instance
 
 export default function Dashboard() {
@@ -26,7 +26,7 @@ export default function Dashboard() {
     <div>
       <h1>Dashboard</h1>
       <button onClick={() => router.push("/")}>Logout</button>
-      <p>Current user: {auth.currentUser.email}</p>
+    <p>Current user: {auth.currentUser ? auth.currentUser.email : "No user logged in"}</p>
     </div>
   )
 
