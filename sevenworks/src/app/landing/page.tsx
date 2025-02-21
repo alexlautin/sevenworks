@@ -1,26 +1,33 @@
-import { Lato } from 'next/font/google';
+"use client";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { auth } from "../lib/firebase"; // Import your Firebase auth instance
 
-const lato = Lato({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-});
+export default function Dashboard() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
-export default function Home() {
-    return (
-        <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 p-4 ${lato.className}`}>
-            <div className="col-span-1 md:col-span-2">
-                <p className="font-bold text-white text-3xl">
-                    Sevenworks
-                </p>
-            </div>
-            <div className="col-span-1">
-                <p className="text-black-700 ml-16 mt-8 text-2xl">
-                    Focus on your future, not on <br />
-                    the formatting.
-                </p>
-            </div>
-            <div className="col-span-1">
-            </div>
-        </div>
-    );
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        router.push("/login"); // Redirect to login page if not authenticated
+      } else {
+        setLoading(false);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [router]);
+
+  if (loading) return <p>Loading...</p>;
+
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      <button onClick={() => router.push("/")}>Logout</button>
+      <p>Current user: {auth.currentUser.email}</p>
+    </div>
+  )
+
 }

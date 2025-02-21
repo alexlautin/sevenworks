@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build": "tsc",
+    "deploy": "npm run build && firebase deploy",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
