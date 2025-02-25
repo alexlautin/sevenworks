@@ -45,10 +45,10 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$icons$2f$tmpLo
 ;
 function Navbar() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "flex flex-row justify-center items-center p-6 gap-4 bg-[#111111] text-white w-full h-fit text-offWhite fixed top-0 left-0 right-0 z-10 shadow-md",
+        className: "flex flex-row justify-center items-center p-6 gap-4 bg-navy w-full h-fit text-offWhite fixed top-0 left-0 right-0 z-10",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex flex-row justify-between w-full items-center gap-8",
+                className: "flex flex-row w-full items-center gap-8",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$icons$2f$tmpLogo$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                         fileName: "[project]/src/app/landing/navbar.tsx",
@@ -60,7 +60,7 @@ function Navbar() {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                 href: "../templates",
-                                className: "hover:text-teal-400 transition-colors duration-200",
+                                className: "hover:scale-[105%] transition-all duration-200",
                                 children: "Resumes"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/landing/navbar.tsx",
@@ -69,7 +69,7 @@ function Navbar() {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                 href: "../templates",
-                                className: "hover:text-teal-400 transition-colors duration-200",
+                                className: "hover:scale-[105%] transition-all duration-200",
                                 children: "Cover Letters"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/landing/navbar.tsx",
@@ -78,7 +78,7 @@ function Navbar() {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                 href: "#",
-                                className: "hover:text-teal-400 transition-colors duration-200",
+                                className: "hover:scale-[105%] transition-all duration-200",
                                 children: "Examples"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/landing/navbar.tsx",
@@ -87,7 +87,7 @@ function Navbar() {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                 href: "#",
-                                className: "hover:text-teal-400 transition-colors duration-200",
+                                className: "hover:scale-[105%] transition-all duration-200",
                                 children: "About"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/landing/navbar.tsx",
@@ -107,11 +107,11 @@ function Navbar() {
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex flex-row justify-end items-center gap-6 ml-auto",
+                className: "flex flex-row justify-end items-center gap-6 text-offWhite",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                         href: "/register/login",
-                        className: "text-teal-400 border-2 border-teal-400 px-6 py-2 rounded-lg whitespace-nowrap hover:bg-teal-400 hover:text-black transition-colors duration-200",
+                        className: "border-2 border-offWhite px-4 py-2 rounded-xl whitespace-nowrap hover:bg-lightRed hover:border-lightRed transition-all duration-200",
                         children: "Log In"
                     }, void 0, false, {
                         fileName: "[project]/src/app/landing/navbar.tsx",
@@ -120,7 +120,7 @@ function Navbar() {
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                         href: "/register/signup",
-                        className: "bg-teal-400 text-black border-2 border-teal-400 px-6 py-2 rounded-lg whitespace-nowrap hover:bg-teal-500 hover:border-teal-500 transition-colors duration-200",
+                        className: "bg-lightRed border-2 border-lightRed px-4 py-2 rounded-xl whitespace-nowrap hover:bg-darkRed hover:border-darkRed transition-all duration-200",
                         children: "Sign Up"
                     }, void 0, false, {
                         fileName: "[project]/src/app/landing/navbar.tsx",

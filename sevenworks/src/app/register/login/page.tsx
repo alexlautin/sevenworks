@@ -1,9 +1,10 @@
 "use client";
 import { useState } from "react";
-import BackArrow from "../../icons/backArrow";
 import { useRouter } from "next/navigation";
 import { auth } from "../../lib/firebase";
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+
+import { IoIosArrowBack } from "react-icons/io";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -19,9 +20,9 @@ export default function Login() {
 
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            console.log("User signed up:", userCredential.user);
+            console.log("User logged in:", userCredential.user);
             setPending(false);
-            router.push("/landing"); // Redirect to the landing page
+            router.push("/dashboard"); // Redirect to the landing page
         } catch (error: unknown) {
             if (error instanceof Error) {
                 setError(error.message);
@@ -47,14 +48,20 @@ export default function Login() {
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-navy to-darkRed">
-            <a href="../../" className="absolute left-2 top-2">
-                <BackArrow />
+            <a href="../../" className="absolute left-2 top-3">
+                <IoIosArrowBack className="text-offWhite text-[45px] hover:text-neutral-400"/>
             </a>
-            <form onSubmit={handleSubmit} className="flex flex-col w-[400px] bg-offWhite p-6 rounded-xl shadow-2xl border-b-4 border-lightGray">
+            <form onSubmit={handleSubmit} className="flex flex-col w-[450px] bg-offWhite p-6 rounded-xl shadow-2xl border-b-4 border-lightGray">
                 <h2 className="text-[32px] font-extrabold text-navy text-center">Welcome Back</h2>
-                <div className="w-full h-[2px] bg-navy my-2"></div>
                 
-                <div className="flex flex-col gap-2 mt-4">
+                <div className="flex justify-center">
+                    <div className="w-[90%] h-[2px] bg-navy my-2"></div>
+                </div>
+
+                {error && <p className="text-red-500 text-center mt-2">{error}</p>}
+                {resetMessage && <p className="text-green-500 text-center mt-2">{resetMessage}</p>}
+                
+                <div className="flex flex-col gap-1 mt-4">
                     <p className="text-lightGray text-[16px] font-medium">Email</p>
                     <input 
                         type="email" 
@@ -62,11 +69,11 @@ export default function Login() {
                         disabled={pending}
                         value={email} 
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full h-[50px] rounded-xl pl-4 shadow-md text-navy border border-gray-300 focus:ring-2 focus:ring-navy"
+                        className="w-full h-[50px] rounded-xl pl-4 shadow-md text-navy border border-gray-200"
                     />
                 </div>
 
-                <div className="flex flex-col gap-2 mt-4">
+                <div className="flex flex-col gap-1 mt-4">
                     <p className="text-lightGray text-[16px] font-medium">Password</p>
                     <input 
                         type="password" 
@@ -74,18 +81,18 @@ export default function Login() {
                         disabled={pending}
                         value={password} 
                         onChange={(e) => setPassword(e.target.value)}
-                        className="w-full h-[50px] rounded-xl pl-4 shadow-md text-navy border border-gray-300 focus:ring-2 focus:ring-navy"
+                        className="w-full h-[50px] rounded-xl pl-4 shadow-md text-navy border border-gray-200"
                     />
                     <button 
                         type="button" 
                         onClick={handlePasswordReset} 
-                        className="text-gray-500 text-[14px] text-right hover:text-black"
+                        className="text-sky-600 text-[14px] text-right hover:underline"
                     >
                         Forgot Password?
                     </button>
                 </div>
 
-                <div className="flex justify-center mt-4">
+                <div className="flex justify-center mt-8">
                     <button 
                         type="submit" 
                         disabled={pending}
@@ -94,9 +101,10 @@ export default function Login() {
                         Log In
                     </button>
                 </div>
-
-                {error && <p className="text-red-500 text-center mt-2">{error}</p>}
-                {resetMessage && <p className="text-green-500 text-center mt-2">{resetMessage}</p>}
+                <p className="text-[14px] text-gray-500 text-center mt-2">
+                    Don&apos;t have an account?&nbsp;
+                    <a href="./signup" className="text-sky-600 hover:underline">Create one</a>
+                </p>
             </form>
         </div>
     );

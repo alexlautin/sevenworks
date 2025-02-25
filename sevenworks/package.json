@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "tsc",
+    "build": "next build",
     "deploy": "npm run build && firebase deploy",
     "dev": "next dev --turbopack",
-    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -23,6 +22,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-dropzone": "^14.3.5",
+    "react-icons": "^5.5.0",
     "svgr": "^0.5.0",
     "tailwind-merge": "^3.0.1"
   },

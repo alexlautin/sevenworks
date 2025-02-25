@@ -110,9 +110,9 @@ function Login() {
         setPending(true);
         try {
             const userCredential = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$firebase$2f$auth$2f$dist$2f$esm2017$2f$index$2d$dfc2d82f$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__ab__as__signInWithEmailAndPassword$3e$__["signInWithEmailAndPassword"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$firebase$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["auth"], email, password);
-            console.log("User signed up:", userCredential.user);
+            console.log("User logged in:", userCredential.user);
             setPending(false);
-            router.push("/landing"); // Redirect to the landing page
+            router.push("/dashboard"); // Redirect to the landing page
         } catch (error) {
             if (error instanceof Error) {
                 setError(error.message);
@@ -152,7 +152,7 @@ function Login() {
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
                 onSubmit: handleSubmit,
-                className: "flex flex-col w-[400px] bg-offWhite p-6 rounded-xl shadow-2xl border-b-4 border-lightGray",
+                className: "flex flex-col w-[450px] bg-offWhite p-6 rounded-xl shadow-2xl border-b-4 border-lightGray",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                         className: "text-[32px] font-extrabold text-navy text-center",
@@ -163,21 +163,44 @@ function Login() {
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "w-full h-[2px] bg-navy my-2"
+                        className: "flex justify-center",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "w-[90%] h-[2px] bg-navy my-2"
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/register/login/page.tsx",
+                            lineNumber: 57,
+                            columnNumber: 21
+                        }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/register/login/page.tsx",
-                        lineNumber: 55,
+                        lineNumber: 56,
                         columnNumber: 17
                     }, this),
+                    error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "text-red-500 text-center mt-2",
+                        children: error
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/register/login/page.tsx",
+                        lineNumber: 60,
+                        columnNumber: 27
+                    }, this),
+                    resetMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "text-green-500 text-center mt-2",
+                        children: resetMessage
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/register/login/page.tsx",
+                        lineNumber: 61,
+                        columnNumber: 34
+                    }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col gap-2 mt-4",
+                        className: "flex flex-col gap-1 mt-4",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "text-lightGray text-[16px] font-medium",
                                 children: "Email"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/register/login/page.tsx",
-                                lineNumber: 58,
+                                lineNumber: 64,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -186,27 +209,27 @@ function Login() {
                                 disabled: pending,
                                 value: email,
                                 onChange: (e)=>setEmail(e.target.value),
-                                className: "w-full h-[50px] rounded-xl pl-4 shadow-md text-navy border border-gray-300 focus:ring-2 focus:ring-navy"
+                                className: "w-full h-[50px] rounded-xl pl-4 shadow-md text-navy border border-gray-200"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/register/login/page.tsx",
-                                lineNumber: 59,
+                                lineNumber: 65,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/register/login/page.tsx",
-                        lineNumber: 57,
+                        lineNumber: 63,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col gap-2 mt-4",
+                        className: "flex flex-col gap-1 mt-4",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "text-lightGray text-[16px] font-medium",
                                 children: "Password"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/register/login/page.tsx",
-                                lineNumber: 70,
+                                lineNumber: 76,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -215,30 +238,30 @@ function Login() {
                                 disabled: pending,
                                 value: password,
                                 onChange: (e)=>setPassword(e.target.value),
-                                className: "w-full h-[50px] rounded-xl pl-4 shadow-md text-navy border border-gray-300 focus:ring-2 focus:ring-navy"
+                                className: "w-full h-[50px] rounded-xl pl-4 shadow-md text-navy border border-gray-200"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/register/login/page.tsx",
-                                lineNumber: 71,
+                                lineNumber: 77,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 type: "button",
                                 onClick: handlePasswordReset,
-                                className: "text-gray-500 text-[14px] text-right hover:text-black",
+                                className: "text-sky-600 text-[14px] text-right hover:underline",
                                 children: "Forgot Password?"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/register/login/page.tsx",
-                                lineNumber: 79,
+                                lineNumber: 85,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/register/login/page.tsx",
-                        lineNumber: 69,
+                        lineNumber: 75,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex justify-center mt-4",
+                        className: "flex justify-center mt-8",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                             type: "submit",
                             disabled: pending,
@@ -246,29 +269,32 @@ function Login() {
                             children: "Log In"
                         }, void 0, false, {
                             fileName: "[project]/src/app/register/login/page.tsx",
-                            lineNumber: 89,
+                            lineNumber: 95,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/register/login/page.tsx",
-                        lineNumber: 88,
+                        lineNumber: 94,
                         columnNumber: 17
                     }, this),
-                    error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-red-500 text-center mt-2",
-                        children: error
-                    }, void 0, false, {
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "text-[14px] text-gray-500 text-center mt-2",
+                        children: [
+                            "Don't have an account? ",
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                href: "./signup",
+                                className: "text-sky-600 hover:underline",
+                                children: "Create one"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/register/login/page.tsx",
+                                lineNumber: 105,
+                                columnNumber: 21
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/src/app/register/login/page.tsx",
-                        lineNumber: 98,
-                        columnNumber: 27
-                    }, this),
-                    resetMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-green-500 text-center mt-2",
-                        children: resetMessage
-                    }, void 0, false, {
-                        fileName: "[project]/src/app/register/login/page.tsx",
-                        lineNumber: 99,
-                        columnNumber: 34
+                        lineNumber: 103,
+                        columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
