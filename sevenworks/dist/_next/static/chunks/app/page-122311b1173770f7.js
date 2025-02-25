@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[974],{8725:(a,e,l)=>{Promise.resolve().then(l.t.bind(l,1609,23))},1609:a=>{a.exports={style:{fontFamily:"'Markazi Text', 'Markazi Text Fallback'",fontStyle:"normal"},className:"__className_52c467",variable:"__variable_52c467"}}},a=>{var e=e=>a(a.s=e);a.O(0,[708,441,517,358],()=>e(8725)),_N_E=a.O()}]);

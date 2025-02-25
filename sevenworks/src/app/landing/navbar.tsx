@@ -1,4 +1,9 @@
-import { markazi } from "../layout";
+import { Markazi_Text } from "next/font/google";
+
+const markazi = Markazi_Text({
+    subsets: ["latin"],
+    variable: "--font-markazi",
+})
 
 export default function Navbar() {
     return (
