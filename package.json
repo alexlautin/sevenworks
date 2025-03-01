@@ -11,9 +11,11 @@
     "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
     "classnames": "^2.5.1",
+    "docxtemplater": "^3.60.0",
     "mongodb": "^6.13.0",
     "mongoose": "^8.10.1",
     "next-auth": "^5.0.0-beta.25",
+    "pizzip": "^3.1.8",
     "react-dropzone": "^14.3.5",
     "tailwind-merge": "^3.0.1"
   }

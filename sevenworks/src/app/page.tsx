@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className = "flex flex-col w-full h-fit justify-start">
       <Navbar />
-      <div className = "flex flex-col w-full h-fit justify-start pt-[75px]">
+      <div className = "flex flex-col w-full h-fit justify-start pt-[60px]">
         <Landing />
         <TemplatePreview />
       </div>

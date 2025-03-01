@@ -18,11 +18,18 @@ export default {
         lightGray: '#8d99ae',
         mediumGray: '#454545',
         darkGray: '#363636',
-        highlightGray: '#666666'
+        highlightGray: '#666666',
+        inputGray: '#999999',
       },
       fontFamily: {
         "markazi": "var(--font-markazi)",
         "inter": "var(--font-inter)",
+      },
+      dropShadow: {
+        glow: [
+          "0 0px 20px rgba(255,255, 255, 0.35)",
+          "0 0px 65px rgba(255, 255,255, 0.2)"
+        ]
       },
     },
   },
