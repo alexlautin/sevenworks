@@ -3,14 +3,14 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { getAuth, onAuthStateChanged, updateProfile, updateEmail } from "firebase/auth";
+import { getAuth, onAuthStateChanged, updateProfile, updateEmail, User } from "firebase/auth";
 import { app } from "../lib/firebase"; // adjust the import to your Firebase initialization file
 
 const ProfilePage = () => {
   const auth = getAuth(app);
   const router = useRouter();
 
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(true);
@@ -50,9 +50,13 @@ const ProfilePage = () => {
         }
         setMessage("Profile updated successfully.");
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
-      setError(err.message || "Failed to update profile.");
+      if (err instanceof Error) {
+        setError(err.message || "Failed to update profile.");
+      } else {
+        setError("Failed to update profile.");
+      }
     }
   };
 
@@ -62,12 +66,12 @@ const ProfilePage = () => {
 
   return (
     <div className="max-w-2xl mx-auto py-10 px-4">
-      <h1 className="text-3xl font-bold mb-6 text-white-800">Manage Your Profile</h1>
+      <h1 className="text-3xl font-bold mb-6 text-gray-800">Manage Your Profile</h1>
       {error && <p className="mb-4 text-gray-800">{error}</p>}
       {message && <p className="mb-4 text-gray-800">{message}</p>}
       <form onSubmit={handleUpdateProfile} className="space-y-4">
         <div>
-          <label className="block mb-1 font-semibold text-white-700">Display Name</label>
+          <label className="block mb-1 font-semibold text-gray-700">Display Name</label>
           <input
             type="text"
             value={displayName}
@@ -77,7 +81,7 @@ const ProfilePage = () => {
           />
         </div>
         <div>
-          <label className="block mb-1 font-semibold text-white-700">Email</label>
+          <label className="block mb-1 font-semibold text-gray-700">Email</label>
           <input
             type="email"
             value={email}
