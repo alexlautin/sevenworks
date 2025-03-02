@@ -41,12 +41,6 @@ export default function AutoScrollImagesDown() {
           ))}
         </motion.div>
       </div>
-
-      {/* If you need to add any external scripts */}
-      <Script
-        src="https://example.com/script.js"
-        strategy="afterInteractive"
-      />
     </>
   );
 }
