@@ -1,8 +1,7 @@
 "use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import Script from 'next/script';
-import "./landing.css"; // Ensure this import is present
+import "./landing.css"; // Keep this import if you need the CSS
 
 const images = [
   "/sample-business-resume.png",
@@ -27,7 +26,10 @@ export default function AutoScrollImagesDown() {
           }}
         >
           {[...images, ...images].map((src, index) => (
-            <div key={index} className="relative w-full h-[400px] md:h-[500px] rounded-lg overflow-hidden flex-shrink-0">
+            <div
+              key={index}
+              className="relative w-full h-[400px] md:h-[500px] rounded-lg overflow-hidden flex-shrink-0"
+            >
               <Image
                 src={src}
                 alt={`Resume ${index + 1}`}
