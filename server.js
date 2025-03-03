@@ -2,16 +2,16 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
-// Import Firebase
+// import Firebase
 const { db, auth } = require("./firebaseConfig");
 
 const app = express();
 
-// Middleware
+// middleware
 app.use(express.json());
 app.use(cors());
 
-// Routes
+// routes
 const authRoutes = require("./routes/authRoutes");
 app.use("/api/auth", authRoutes);
 

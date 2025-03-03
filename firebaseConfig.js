@@ -1,9 +1,9 @@
 const admin = require("firebase-admin");
 const dotenv = require("dotenv");
 
-dotenv.config(); // Load environment variables
+dotenv.config(); // load environment variables
 
-// Parse the private key correctly
+// parse the private key correctly
 const privateKey = process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'); 
 
 admin.initializeApp({
