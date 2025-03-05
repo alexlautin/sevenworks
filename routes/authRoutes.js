@@ -1,6 +1,8 @@
 const express = require("express");
 const { db, auth } = require("../firebaseConfig");
 const authMiddleware = require("../middleware/authMiddleware"); // imports Middleware
+const fetch = require("node-fetch");
+require("dotenv").config();
 
 const router = express.Router();
 
@@ -48,7 +50,7 @@ router.post("/login", async (req, res) => {
 
     // Firebase REST API to get ID token
     const response = await fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBPjF9ujr8-xqtqTn7S4n9lSrwuJuP9v0w",
+      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.FIREBASE_API_KEY}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
