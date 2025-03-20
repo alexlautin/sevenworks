@@ -101,7 +101,7 @@ const BusinessResume = () => {
         <div className="resume-flex">
           <div>
             <p><strong>UBS Freshman Frenzy Program</strong> New York, NY</p>
-            <p className="resume-role">Finance Committee Member</p>
+            <p className="resume-role">Participant</p>
           </div>
           <p className="resume-date">June 2019</p>
         </div>
