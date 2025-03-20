@@ -1,5 +1,5 @@
 import React from "react";
-import "./DataAnalyst.css";
+import "./SWE.css";
 
 const SWEResume = () => {
   return (
