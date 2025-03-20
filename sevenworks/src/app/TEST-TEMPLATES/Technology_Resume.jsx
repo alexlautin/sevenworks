@@ -1,7 +1,7 @@
 import React from "react";
 import "./Technology.css";
 
-const Resume = () => {
+const TechnologyResume = () => {
   return (
     <div className="resume-container">
       {/* Header */}
@@ -149,4 +149,4 @@ const Resume = () => {
   );
 };
 
-export default Technology_Resume;
+export default TechnologyResume;
