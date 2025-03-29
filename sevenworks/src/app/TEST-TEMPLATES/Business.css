@@ -1,0 +1,119 @@
+/* Page setup for US Letter size */
+@page {
+    size: 8.5in 11in;
+}
+
+/* General Styles */
+.resume-container {
+    font-family: "Calibri", sans-serif;
+    font-size: 10pt;
+    color: #000;
+    line-height: 1.0;
+    margin: 0;
+    padding: 10px;
+    max-width: 7.5in;
+    margin: auto;
+}
+
+/* Header Section */
+.resume-header {
+    text-align: center;
+}
+
+.resume-name {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+/* Contact Info */
+.resume-contact {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10pt;
+    margin-bottom: 2px; /* Reduce spacing here */
+}
+
+/* Left-aligned address */
+.contact-left {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Right-aligned phone and email */
+.contact-right {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Horizontal rule under contact information */
+.header-line {
+    border: none;
+    height: 1px;
+    background-color: black;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* Section Headers */
+h2 {
+    font-size: 10pt;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-top: 12px;
+    margin-bottom: 4px;
+}
+
+/* Bullet Points Fix */
+ul {
+    margin-top: 0px;
+    /* margin-bottom: 10px; */
+    padding-left: 15px;
+}
+
+ul li {
+    margin-bottom: 2px;
+    line-height: 1.2;
+    padding-left: 10px;
+    padding-right: 5px;
+}
+
+/* Ensure Job Titles & Dates Stay on the Same Line */
+.resume-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Ensures job title and date align properly */
+    flex-wrap: nowrap; /* Prevents dates from moving to the next line */
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+/* Keep Dates Properly Aligned */
+.resume-date {
+    white-space: nowrap;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.resume-role {
+    font-style: italic;
+}
+
+/* Remove Extra Space Between Paragraphs */
+p {
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* Reduce Gap Between Sections */
+.resume-section {
+    margin-bottom: 6px; /* Ensures consistent spacing between sections */
+}
+
+/* Ensure Tight Name & Contact Alignment */
+.resume-header .resume-contact {
+    margin-bottom: 10px;
+}

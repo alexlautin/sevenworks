@@ -1,0 +1,128 @@
+/* Page Setup */
+@page {
+    size: 8.5in 11in;
+  }
+  
+  /* General Container Styles */
+  .resume-container {
+    font-family: "Calibri", sans-serif;
+    font-size: 11pt;
+    color: #000;
+    line-height: 1.2;
+    max-width: 8.5in;
+    margin: auto;
+  }
+  
+  /* Header Styles */
+  .resume-header {
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  
+  .resume-name {
+    font-size: 16pt;
+    margin: 0;
+    margin-top: 20px;
+    font-weight: normal;
+  }
+  
+  .resume-contact {
+    font-size: 11pt;
+    margin: 2px 0 6px 0;
+  }
+  
+  .header-line {
+    border: none;
+    height: 2px;
+    background-color: black;
+    /* margin: 6px 0 10px 0; */
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  
+  /* Section Title */
+  h2 {
+    font-size: 11pt;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    font-weight: normal;
+  }
+  
+  .section-divider {
+    border: none;
+    height: 1px;
+    background-color: black;
+    margin-bottom: 6px;
+  }
+  
+  /* Flex container for job rows */
+  .resume-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    width: 100%;
+    /* margin-bottom: 0px; */
+    /* margin-top: 0px; */
+  }
+  
+  .resume-details {
+    flex-grow: 1;
+    min-width: 70%;
+  }
+  
+  .resume-date-location {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    white-space: nowrap;
+    flex-shrink: 0;
+    line-height: 1.2;
+  }
+  
+  .resume-location {
+    font-size: 10pt;
+    /* margin-bottom: 2px; */
+  }
+  
+  .resume-date {
+    font-size: 10pt;
+  }  
+  
+  /* Italicized Role */
+  .resume-role {
+    font-style: italic;
+    /* margin-bottom: 1px; */
+  }
+  
+  /* Paragraphs */
+  p {
+    margin: 0;
+    line-height: 1.2;
+  }
+  
+  /* Bullet List */
+  ul {
+    margin-top: 0px;
+    /* margin-bottom: 15px; */
+    padding-left: 19px;
+  }
+  
+  ul li {
+    /* margin-bottom: 2px; */
+    line-height: 1.2;
+    padding-left: 10px;
+  }
+  
+  /* Section Spacing */
+  .resume-section {
+    margin-bottom: 12px;
+  }
+  
+  /* Inline Bold/Italic Styling Helpers */
+  
+  .italic {
+    font-style: italic;
+  }
+  

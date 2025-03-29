@@ -1,0 +1,108 @@
+/* Page setup for US Letter size */
+@page {
+    size: 8.5in 11in;
+    margin: 0.5in;
+  }
+  
+  /* General Styles */
+  .resume-container {
+    font-family: "Times New Roman", sans-serif;
+    font-size: 10pt;
+    color: #000;
+    line-height: 1.2;
+    margin: 0 auto;
+    max-width: 8.5in;
+  }
+  
+  /* Header */
+  .resume-header {
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  
+  .resume-name {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-bottom: 2px;
+  }
+  
+  .resume-contact {
+    font-size: 10pt;
+    margin-bottom: 0px;
+  }
+  
+  .header-line {
+    border: none;
+    height: 1px;
+    background-color: black;
+    /* margin: 4px 0; */
+    margin-top: 0px;
+    margin-bottom: 2px;
+  }
+  
+  /* Section Headers */
+  h2 {
+    font-size: 10pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 10px;
+    margin-bottom: 2px;
+  }
+  
+  .section-divider {
+    border: none;
+    height: 1px;
+    background-color: black;
+    margin: 2px 0 4px;
+  }
+  
+  /* Content Layout */
+  .resume-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    margin-bottom: 2px;
+    width: 100%;
+  }
+  
+  .resume-date-location {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    white-space: nowrap;
+    font-size: 10pt;
+  }
+  
+  .resume-role {
+    font-style: italic;
+    margin-bottom: 0px;
+  }
+  
+  ul {
+    margin-top: 0px;
+    margin-bottom: 5px;
+    padding-left: 40px;
+  }
+  
+  ul li {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    line-height: 1.2;
+    padding-left: 10px;
+  }
+  
+  p {
+    margin: 0;
+    line-height: 1.2;
+  }
+  
+  .bold {
+    font-weight: bold;
+  }
+  
+  .italic {
+    font-style: italic;
+  }
+  

@@ -1,0 +1,132 @@
+/* Page setup */
+@page {
+    size: 8.5in 11in;
+  }
+  
+  /* General container styles */
+  .resume-container {
+    font-family: "Calibri", sans-serif;
+    font-size: 11pt;
+    color: #000;
+    line-height: 1.2;
+    margin: 0 auto;
+    max-width: 7.5in;
+    padding: 0;
+  }
+  
+  /* Header section */
+  .resume-header {
+    text-align: left;
+    margin-bottom: 8px;
+  }
+  
+  .resume-name {
+    font-size: 16pt;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.2;
+    margin-top: 20px;
+  }
+  
+  .resume-contact-linear {
+    font-size: 10pt;
+    margin-top: 2px;
+    margin-bottom: 30px;
+    line-height: 1.2;
+    color: #000;
+  }
+  
+  .resume-contact-linear a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .resume-contact-linear p {
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+  }  
+  
+  /* Horizontal line below section titles */
+  .section-divider {
+    border: none;
+    height: 1px;
+    background-color: black;
+    margin-top: 4px;
+    margin-bottom: 2px;
+  }
+  
+  /* Section headers */
+  h2 {
+    font-size: 11pt;
+    font-weight: bold;
+    margin-bottom: 2px;
+    margin-top: 10px;
+  }
+  
+  /* Experience layout */
+  .resume-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    margin-bottom: 2px;
+    width: 100%;
+  }
+  
+/* Wrapper for date and location on the right */
+.resume-date-location {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;  /* Right-aligns the text */
+    text-align: right;
+    flex-shrink: 0;  /* Prevents it from shrinking */
+    line-height: 1.2;
+    white-space: nowrap;  /* Keeps content on one line if possible */
+  }
+  
+  /* Individual date styling */
+  .resume-date {
+    margin-bottom: 0.1px;  
+  }
+  
+  /* Individual location styling */
+  .resume-location {
+    color: #000;
+    text-align: right;
+  }
+  
+  
+  .resume-role {
+    font-style: italic;
+  }
+  
+  /* Section spacing */
+  .resume-section {
+    margin-bottom: 12px;
+    margin-top: 20px;
+  }
+  
+  /* Bullets */
+  ul {
+    margin-top: 4px;
+    margin-bottom: 8px;
+    padding-left: 35px;
+  }
+  
+  ul li {
+    margin-bottom: 2px;
+    line-height: 1.2;
+  }
+  
+  /* Paragraphs */
+  p {
+    margin: 0;
+    line-height: 1.2;
+  }
+  
+  /* Optional: Link hover styling */
+  a:hover {
+    text-decoration: underline;
+  }
+  

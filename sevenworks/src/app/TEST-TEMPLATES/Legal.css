@@ -1,0 +1,86 @@
+@page {
+    size: 8.5in 11in;
+  }
+  
+  /* Main container */
+  .resume-container {
+    font-family: "Times New Roman", sans-serif;
+    font-size: 11pt;
+    color: #000;
+    line-height: 1.2;
+    max-width: 7.5in;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  /* Header */
+  .resume-header {
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  
+  .resume-name {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-bottom: 2px;
+  }
+  
+  .resume-contact {
+    font-size: 11pt;
+    margin-bottom: 0px;
+  }
+  
+  /* Section headers */
+  h2 {
+    font-size: 11pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 16px;
+    margin-bottom: 0px;
+    padding-top: 4px;
+  }
+  
+  /* Section container */
+  .resume-section {
+    margin-bottom: 5px;
+  }
+  
+  /* Flex line for jobs/schools */
+  .resume-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    margin-bottom: 2px;
+  }
+  
+  /* Right-aligned date and location */
+  .resume-date-location {
+    text-align: right;
+    white-space: nowrap;
+    font-size: 11pt;
+    flex-shrink: 0;
+  }
+  
+  /* Italics for roles */
+  .resume-role {
+    font-style: italic;
+  }
+  
+  /* Bullet list */
+  ul {
+    margin: 4px 0 8px 15px;
+    padding: 0;
+    margin-bottom: 15px;
+  }
+  
+  ul li {
+    margin-bottom: 2px;
+  }
+  
+  /* Paragraphs */
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  

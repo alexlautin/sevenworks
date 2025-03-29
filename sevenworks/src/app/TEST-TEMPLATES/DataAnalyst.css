@@ -1,0 +1,105 @@
+/* Page setup for US Letter size */
+@page {
+    size: 8.5in 11in;
+}
+
+/* General Styles */
+.resume-container {
+    max-width: 7.5in;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: "Cambria", sans-serif;
+    font-size: 10pt;
+    color: #000;
+    line-height: 1.2;
+}
+
+/* Header Section */
+.resume-header {
+    text-align: center;
+}
+
+.resume-name {
+    font-family: "Times New Roman", sans-serif;
+    font-size: 20pt;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.resume-contact {
+    font-family: "Times New Roman", sans-serif;
+    font-size: 10pt;
+    text-align: center;
+}
+
+.header-line {
+    border: none;
+    height: 1px;
+    background-color: black;
+    margin-top: 12px;
+    margin-bottom: 15px;
+}
+
+/* Title Section */
+.resume-title {
+    font-size: 14pt;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Section Headers */
+h2 {
+    font-size: 10pt;
+    font-weight: bold;
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: black;
+    margin-bottom: 8px;
+}
+
+/* Bullet Points */
+ul {
+    margin-top: 2px;
+    margin-bottom: 5px;
+    padding-left: 40px;
+}
+
+ul li {
+    margin-bottom: 2px;
+    line-height: 1.2;
+}
+
+/* Job Titles & Dates Alignment */
+.resume-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+}
+
+.resume-date {
+    white-space: nowrap;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+/* Role Formatting */
+.resume-role {
+    font-style: italic;
+}
+
+/* Adjustments for Consistent Spacing */
+p {
+    margin: 0;
+    line-height: 1.2;
+}
+
+.resume-section {
+    margin-bottom: 12px;
+}

@@ -1,0 +1,86 @@
+@page {
+    size: 8.5in 11in;
+  }
+  
+  .resume-container {
+    font-family: "Calibri", sans-serif;
+    font-size: 11pt;
+    color: #000;
+    line-height: 1.2;
+    margin: 0 auto;
+    padding: 10px;
+    max-width: 8.5in;
+  }
+  
+  .resume-header {
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  
+  .resume-name {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-bottom: 2px;
+  }
+  
+  .resume-contact {
+    font-size: 11pt;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    color: #000;
+  }
+  
+  .resume-section {
+    margin-bottom: 12px;
+  }
+  
+  h2 {
+    font-size: 11pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 12px 0 4px;
+  }
+  
+  .resume-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 0px;
+  }
+  
+  .resume-date-location {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-size: 11pt;
+    line-height: 1.2;
+  }
+  
+  .resume-role {
+    font-style: italic;
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+  
+  ul {
+    margin-top: 0px;
+    padding-left: 25px;
+    margin-bottom: 0px;
+  }
+  
+  ul li {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    line-height: 1.2;
+    padding-left: 5px;
+  }
+  
+  p {
+    margin: 0;
+    line-height: 1.2;
+  }
+  
