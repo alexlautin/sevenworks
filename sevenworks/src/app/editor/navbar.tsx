@@ -139,13 +139,18 @@ export default function Navbar() {
                             onClick={() => window.location.reload()} 
                         />
                         {formData && (
-                            <NewPDFDownloadLink
-                                document={<BusinessTemplate formData={formData} />}
-                                fileName="exported_form.pdf"
-                                className="hover:opacity-65 transition-opacity duration-200"
-                            >
-                                <Image src="/download.svg" alt="download" width={24} height={24} className="hover:scale-110 transition-transform duration-200" />
-                            </NewPDFDownloadLink>
+                            console.log(formData),
+                            <div>
+                                <Image src={"/download.svg"} alt="download" width={24} height={24} className="hover:scale-110 transition-transform duration-200 hover:opacity-65" />
+                            </div>
+                            // The pdf link is causing all our problems!!!!!!!!!!!
+                            // <NewPDFDownloadLink
+                            //     document={<BusinessTemplate formData={formData} />}
+                            //     fileName="exported_form.pdf"
+                            //     className="hover:opacity-65 transition-opacity duration-200"
+                            // >
+                            //     <Image src="/download.svg" alt="download" width={24} height={24} className="hover:scale-110 transition-transform duration-200" />
+                            // </NewPDFDownloadLink>
                         )}
                         <Image src="/settings.svg" alt="settings" width={24} height={24} className="hover:scale-110 transition-transform duration-200 hover:opacity-65" />
                         <button onClick={handleSignOut} className="hover:underline hover:opacity-65 transition-opacity duration-200">

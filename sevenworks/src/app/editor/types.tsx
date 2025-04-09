@@ -35,4 +35,9 @@ export interface TemplateProps {
         experience?: ExperienceEntry[];
         content?: string;
     };
+    additionalSections?: Array<{
+        id: number;
+        label: string;
+        value: string;
+    }>
 }

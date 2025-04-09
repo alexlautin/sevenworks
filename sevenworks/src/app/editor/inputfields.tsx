@@ -10,6 +10,7 @@ import { useZoom } from "./zoomcontext";
  
 const ViewerNoSSR = dynamic(() => import('@react-pdf-viewer/core').then(mod => mod.Viewer), { ssr: false });
 import '@react-pdf-viewer/core/lib/styles/index.css';
+import { set } from "lodash";
 
 const InputFields = () => {
   const searchParams = useSearchParams();
@@ -34,21 +35,24 @@ const InputFields = () => {
 
 
   // New state for custom personal fields
+  const [additionalSections, setAdditionalSections] = useState<{id: number; label: string; value:string }[]>([]);
   const [customPersonalFields, setCustomPersonalFields] = useState<{ id: number; label: string; value: string }[]>([]);
 
   // Function to add a new custom field
   const addCustomField = () => {
     const newField = { id: Date.now(), label: "", value: "" };
-    const updatedFields = [...customPersonalFields, newField];
+    const updatedFields = [...additionalSections, newField];
+    setAdditionalSections(updatedFields);
     setCustomPersonalFields(updatedFields);
     setFormData("customPersonal", updatedFields);
   };
 
   // Function to handle changes to custom fields
   const handleCustomFieldChange = (id: number, key: "label" | "value", newValue: string) => {
-    const updatedFields = customPersonalFields.map(field =>
+    const updatedFields = additionalSections.map(field =>
       field.id === id ? { ...field, [key]: newValue } : field
     );
+    setAdditionalSections(updatedFields);
     setCustomPersonalFields(updatedFields);
     setFormData("customPersonal", updatedFields);
   };
@@ -80,7 +84,7 @@ const InputFields = () => {
     
     setIsGenerating(true);
     try {
-      const blob = await pdf(<BusinessTemplate formData={formData} />).toBlob();
+      const blob = await pdf(<BusinessTemplate formData={formData} additionalSections={additionalSections} />).toBlob();
       const newUrl = URL.createObjectURL(blob);
       
       // Store the new PDF in the inactive slot
@@ -197,7 +201,7 @@ const InputFields = () => {
       return (
         <div className="bg-white rounded-lg shadow-lg hover:shadow-lg transition transform p-6 border border-gray-150 flex flex-col flex-1 min-h-full">          
           <h1 className="text-black text-center">Personal Information</h1>
-          {["firstName", "middleName", "lastName", "email", "phone", "address"].map((field) => (
+          {["firstName", "middleName", "lastName", "email", "phone", "address", "leadership"].map((field) => (
             <div key={field} className="flex flex-col mt-2">
               <span className="text-xs font-bold text-[#848C8E]">
                 {field.charAt(0).toUpperCase() + field.replace(/([A-Z])/g, ' $1').slice(1)}{" "}

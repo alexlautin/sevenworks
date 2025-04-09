@@ -1,6 +1,6 @@
 import React from "react";
 import { Document, Page, Text, View, StyleSheet, Font } from "@react-pdf/renderer";
-import { TemplateProps } from "../types";
+import { TemplateProps } from "./types";
 
 Font.register({family: "Arial", src: "/fonts/ARIAL.TTF"});
 Font.register({family: "Calibri", src: "/fonts/calibri.ttf"});
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function BusinessTemplate({ formData }: TemplateProps) {
+export default function BusinessTemplate({ formData, additionalSections }: TemplateProps) {
   return (
     <Document>
       <Page size="LETTER" style={styles.page}>
@@ -164,6 +164,22 @@ export default function BusinessTemplate({ formData }: TemplateProps) {
               </Text>
             )}
           </View>
+
+          {additionalSections && additionalSections.length > 0 && (
+            <View style={{ marginTop: 10, fontFamily: formData.font }}>
+              <Text style={styles.title}>ADDITIONAL SECTIONS</Text>
+              {additionalSections.map((section, index) => (
+                <View key={index} style={{ marginBottom: 4 }}>
+                  <Text style={styles.job_header}>
+                    {section.label || "Section Title"}
+                  </Text>
+                  <Text style={styles.content}>
+                    {section.value || "Section content goes here."}
+                  </Text>
+                </View>
+              ))}
+            </View>
+          )}
         </View>
       </Page>
     </Document>
