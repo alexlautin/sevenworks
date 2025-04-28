@@ -14,7 +14,7 @@
     "classnames": "^2.5.1",
     "cookie": "^1.0.2",
     "firebase": "^10.6.0",
-    "firebase-admin": "^11.11.1",
+    "firebase-admin": "^13.3.0",
     "framer-motion": "^12.4.10",
     "next": "^15.2.4",
     "pdfjs-dist": "^3.4.120",
