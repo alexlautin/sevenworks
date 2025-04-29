@@ -17,7 +17,7 @@
     "cookie": "^1.0.2",
     "eventsource": "^3.0.6",
     "firebase": "^10.7.2",
-    "firebase-admin": "^12.0.0",
+    "firebase-admin": "^13.3.0",
     "framer-motion": "^12.4.10",
     "next": "^15.2.4",
     "pdfjs-dist": "^3.11.174",
