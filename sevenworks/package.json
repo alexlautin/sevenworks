@@ -20,7 +20,7 @@
     "firebase-admin": "^12.0.0",
     "framer-motion": "^12.4.10",
     "next": "^15.2.4",
-    "pdfjs-dist": "^3.11.174",
+    "pdfjs-dist": "^5.2.133",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-dropzone": "^14.3.5",
