@@ -18,7 +18,7 @@
     "eventsource": "^3.0.6",
     "firebase": "^10.7.2",
     "firebase-admin": "^12.0.0",
-    "framer-motion": "^12.4.10",
+    "framer-motion": "^12.12.1",
     "next": "^15.2.4",
     "pdfjs-dist": "~3.11.174",
     "react": "^19.0.0",
