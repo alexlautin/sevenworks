@@ -22,7 +22,7 @@
     "next": "^15.2.4",
     "pdfjs-dist": "~3.11.174",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react-dom": "^19.1.1",
     "react-dropzone": "^14.3.5",
     "react-firebase-hooks": "^5.1.1",
     "react-icons": "^5.5.0",
