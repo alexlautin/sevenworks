@@ -1,20 +1,34 @@
 import type { Config } from "tailwindcss";
 
+const token = (name: string) => `rgb(var(--${name}) / <alpha-value>)`;
+
 export default {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+  darkMode: "class", // light only; no dark class is ever set
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        navy: '#2b2d42',
-        lightRed: '#ef233c',
-        offWhite: '#edf2f4',
-        darkRed: '#91031b'
+        bg: token("bg"),
+        surface: token("surface"),
+        muted: token("surface-muted"),
+        line: token("border"),
+        ink: token("text"),
+        subtle: token("text-muted"),
+        accent: token("accent"),
+        "accent-ink": token("accent-ink"),
+        primary: token("primary"),
+        "on-primary": token("on-primary"),
+        // brand colours kept for reference
+        navy: "#2b2d42",
+        rose: "#E6BDB9",
+      },
+      fontFamily: {
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        display: ["var(--font-inter)", "system-ui", "sans-serif"],
+      },
+      boxShadow: {
+        page: "0 1px 2px rgb(16 17 30 / 0.06), 0 12px 32px -8px rgb(16 17 30 / 0.18)",
+        soft: "0 1px 2px rgb(16 17 30 / 0.05), 0 4px 16px -6px rgb(16 17 30 / 0.12)",
       },
     },
   },

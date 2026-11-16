@@ -1,0 +1,6 @@
+.claude
+.next
+node_modules
+**/.next
+**/node_modules
+resume_enhancement

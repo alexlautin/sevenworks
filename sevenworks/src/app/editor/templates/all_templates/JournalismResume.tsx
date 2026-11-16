@@ -1,4 +1,5 @@
 import React from "react";
+import { contactLine } from "../shared";
 import { Document, Page, Text, View, StyleSheet, Font } from "@react-pdf/renderer";
 
 // Define proper formData interface
@@ -112,9 +113,9 @@ const styles = StyleSheet.create({
 
 const JournalismResume = ({ formData }: TemplateProps) => {
   // Helper function to check if a data array has content
-  const hasContent = (arr: any[] | undefined, fields: string[]) => {
+  const hasContent = (arr: object[] | undefined, fields: string[]) => {
     return Array.isArray(arr) && arr.length > 0 && arr.some(item => 
-      fields.some(field => item[field] && String(item[field]).trim() !== '')
+      fields.some(field => (item as Record<string, unknown>)[field] && String((item as Record<string, unknown>)[field]).trim() !== '')
     );
   };
 
@@ -140,11 +141,11 @@ const JournalismResume = ({ formData }: TemplateProps) => {
         {/* Header Section */}
         <View style={styles.header}>
           <Text style={dynamicStyles.name}>
-            {formData.firstName || "MORGAN"} {formData.middleName ? formData.middleName + " " : ""}
-            {formData.lastName || "WRITER"}
+            {formData.firstName || ""} {formData.middleName ? formData.middleName + " " : ""}
+            {formData.lastName || ""}
           </Text>
           <Text style={styles.contact}>
-            {formData.address || "123 Press Avenue, Atlanta, GA 30322"} | {formData.phone || "(404) 555-7890"} | {formData.email || "mwriter@gmail.com"}
+            {contactLine(formData)}
           </Text>
         </View>
 
@@ -161,20 +162,7 @@ const JournalismResume = ({ formData }: TemplateProps) => {
                 <Text style={styles.role}>{edu.degree || ""}</Text>
               </View>
             ))
-          ) : (
-            <>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.organization}>EMORY UNIVERSITY</Text>
-                  <Text>Atlanta, GA • May 2023</Text>
-                </View>
-                <Text style={styles.role}>Bachelor of Arts in Journalism and Media Studies, Minor in Political Science</Text>
-                <Text style={styles.bullet}>• GPA: 3.8/4.0, Magna Cum Laude</Text>
-                <Text style={styles.bullet}>• Relevant Coursework: Investigative Reporting, Multimedia Storytelling, Data Journalism, Media Ethics, Feature Writing, Broadcast Journalism</Text>
-                <Text style={styles.bullet}>• Senior Thesis: "Changing Landscapes of Local News in Digital Media Ecosystems"</Text>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Experience Section */}
@@ -193,43 +181,7 @@ const JournalismResume = ({ formData }: TemplateProps) => {
                 ))}
               </View>
             ))
-          ) : (
-            <>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.organization}>THE ATLANTA JOURNAL-CONSTITUTION</Text>
-                  <Text>Atlanta, GA • Jan 2023 - Present</Text>
-                </View>
-                <Text style={styles.role}>Junior Reporter, Local News</Text>
-                <Text style={styles.bullet}>• Report on city government, local politics, and community issues for Atlanta's largest daily newspaper</Text>
-                <Text style={styles.bullet}>• Produce 3-5 stories weekly for print and digital platforms, including multimedia content</Text>
-                <Text style={styles.bullet}>• Cover breaking news and develop enterprise stories on urban development and social justice issues</Text>
-                <Text style={styles.bullet}>• Maintain active engagement on social media platforms to promote stories and interact with readers</Text>
-              </View>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.organization}>NPR AFFILIATE WABE 90.1 FM</Text>
-                  <Text>Atlanta, GA • May - Dec 2022</Text>
-                </View>
-                <Text style={styles.role}>News Intern</Text>
-                <Text style={styles.bullet}>• Assisted producers and reporters with research, fact-checking, and pre-interview preparation</Text>
-                <Text style={styles.bullet}>• Produced 3 radio packages that aired during "Morning Edition" and "All Things Considered"</Text>
-                <Text style={styles.bullet}>• Conducted person-on-the-street interviews and gathered ambient sound for news stories</Text>
-                <Text style={styles.bullet}>• Wrote web versions of broadcast stories for station website and social media channels</Text>
-              </View>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.organization}>THE EMORY WHEEL</Text>
-                  <Text>Atlanta, GA • Aug 2020 - May 2023</Text>
-                </View>
-                <Text style={styles.role}>News Editor (2022-2023); Staff Writer (2020-2022)</Text>
-                <Text style={styles.bullet}>• Managed team of 10 reporters, assigning stories and providing editorial guidance</Text>
-                <Text style={styles.bullet}>• Published over 45 articles covering campus news, events, and administrative decisions</Text>
-                <Text style={styles.bullet}>• Led investigation into university housing policies that resulted in policy changes</Text>
-                <Text style={styles.bullet}>• Redesigned news section layout, increasing readership by 30% according to analytics</Text>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Multimedia Projects & Publications Section */}
@@ -248,27 +200,7 @@ const JournalismResume = ({ formData }: TemplateProps) => {
                 ))}
               </View>
             ))
-          ) : (
-            <>
-              <View style={styles.detailsContainer}>
-                <Text style={styles.organization}>"Forgotten Neighborhoods: Atlanta's Infrastructure Inequality" (2023)</Text>
-                <Text style={styles.bullet}>• Produced five-part investigative series examining infrastructure disparities across Atlanta neighborhoods</Text>
-                <Text style={styles.bullet}>• Created interactive map using GIS data to visualize resource allocation patterns</Text>
-                <Text style={styles.bullet}>• Series received Georgia Press Association award for investigative reporting</Text>
-              </View>
-              <View style={styles.detailsContainer}>
-                <Text style={styles.organization}>"Voices of the Pandemic" Podcast Series (2021-2022)</Text>
-                <Text style={styles.bullet}>• Conceptualized and produced 8-episode podcast highlighting personal stories during COVID-19</Text>
-                <Text style={styles.bullet}>• Conducted interviews, edited audio, and developed narrative structure for each episode</Text>
-                <Text style={styles.bullet}>• Generated over 15,000 downloads across streaming platforms</Text>
-              </View>
-              <View style={styles.detailsContainer}>
-                <Text style={styles.organization}>Freelance Articles</Text>
-                <Text style={styles.bullet}>• Published articles in Atlanta Magazine, Georgia Trend, and The Georgia Straight</Text>
-                <Text style={styles.bullet}>• Topics include local arts, food culture, and profiles of community leaders</Text>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Skills Section */}
@@ -276,15 +208,7 @@ const JournalismResume = ({ formData }: TemplateProps) => {
           <Text style={styles.sectionTitle}>TECHNICAL SKILLS</Text>
           {formData.skillsInterests && formData.skillsInterests.trim() !== '' ? (
             <Text>{formData.skillsInterests}</Text>
-          ) : (
-            <>
-              <Text style={styles.bullet}>• Reporting & Writing: AP Style, feature writing, news writing, investigative reporting, fact-checking</Text>
-              <Text style={styles.bullet}>• Audio/Visual: Adobe Audition, Premiere Pro, Photoshop, DSLR photography, audio recording</Text>
-              <Text style={styles.bullet}>• Data Journalism: Data visualization, basic coding (HTML, CSS, R), spreadsheet analysis</Text>
-              <Text style={styles.bullet}>• Digital Media: Social media management, SEO, content management systems (WordPress, Arc Publishing)</Text>
-              <Text style={styles.bullet}>• Languages: English (native), Spanish (proficient)</Text>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Awards & Recognition Section */}
@@ -294,25 +218,9 @@ const JournalismResume = ({ formData }: TemplateProps) => {
             formData.honorsList.filter(h => h.honor && h.honor.trim() !== '').map((honor, idx) => (
               <Text key={idx} style={styles.bullet}>• {honor.honor}</Text>
             ))
-          ) : (
-            <>
-              <Text style={styles.bullet}>• Georgia College Press Association Award for Best News Article (2022)</Text>
-              <Text style={styles.bullet}>• Emory University Excellence in Journalism Scholarship (2021-2023)</Text>
-              <Text style={styles.bullet}>• Society of Professional Journalists Mark of Excellence Award, Regional Finalist (2022)</Text>
-              <Text style={styles.bullet}>• Selected for Poynter Institute's College Media Project (2022)</Text>
-              <Text style={styles.bullet}>• James M. Cox Jr. Foundation Journalism Fellowship (2022)</Text>
-            </>
-          )}
+          ) : null}
         </View>
 
-        {/* Professional Memberships Section */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>PROFESSIONAL MEMBERSHIPS</Text>
-          <Text style={styles.bullet}>• Society of Professional Journalists, Student Member</Text>
-          <Text style={styles.bullet}>• Online News Association, Student Member</Text>
-          <Text style={styles.bullet}>• National Association of Black Journalists, Student Member</Text>
-          <Text style={styles.bullet}>• Investigative Reporters and Editors, Student Member</Text>
-        </View>
 
         {/* Custom Personal Fields Section if available */}
         {Array.isArray(formData.customPersonal) && formData.customPersonal.length > 0 && formData.customPersonal.some(field => field.label && field.value) && (

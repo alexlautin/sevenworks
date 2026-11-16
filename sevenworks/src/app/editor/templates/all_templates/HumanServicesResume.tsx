@@ -1,4 +1,5 @@
 import React from "react";
+import { contactLine } from "../shared";
 import { Document, Page, Text, View, StyleSheet, Font } from "@react-pdf/renderer";
 
 // Define proper formData interface
@@ -12,11 +13,15 @@ interface ExperienceEntry {
   title: string;
   company: string;
   years: string;
+  bullets?: string[];
 }
 
 interface LeadershipEntry {
   title: string;
-  description: string;
+  description?: string;
+  role?: string;
+  years?: string;
+  bullets?: string[];
 }
 
 interface FormData {
@@ -108,9 +113,9 @@ const styles = StyleSheet.create({
 
 const HumanServicesResume = ({ formData }: TemplateProps) => {
   // Helper function to check if a data array has content
-  const hasContent = (arr: any[] | undefined, fields: string[]) => {
+  const hasContent = (arr: object[] | undefined, fields: string[]) => {
     return Array.isArray(arr) && arr.length > 0 && arr.some(item => 
-      fields.some(field => item[field] && String(item[field]).trim() !== '')
+      fields.some(field => (item as Record<string, unknown>)[field] && String((item as Record<string, unknown>)[field]).trim() !== '')
     );
   };
 
@@ -136,11 +141,11 @@ const HumanServicesResume = ({ formData }: TemplateProps) => {
         {/* Header Section */}
         <View style={styles.header}>
           <Text style={dynamicStyles.name}>
-            {formData.firstName || "JANE"} {formData.middleName ? formData.middleName + " " : ""}
-            {formData.lastName || "CAREGIVER"}
+            {formData.firstName || ""} {formData.middleName ? formData.middleName + " " : ""}
+            {formData.lastName || ""}
           </Text>
           <Text style={styles.contact}>
-            {formData.address || "123 Compassion Avenue, Atlanta, GA 30309"} | {formData.phone || "(404) 555-1234"} | {formData.email || "jcaregiver@email.com"}
+            {contactLine(formData)}
           </Text>
         </View>
 
@@ -157,17 +162,7 @@ const HumanServicesResume = ({ formData }: TemplateProps) => {
                 <Text style={styles.role}>{edu.degree || ""}</Text>
               </View>
             ))
-          ) : (
-            <View style={styles.detailsContainer}>
-              <View style={styles.flexRow}>
-                <Text style={styles.institution}>Emory University</Text>
-                <Text>May 2022</Text>
-              </View>
-              <Text style={styles.role}>Bachelor of Arts in Human Services, Minor in Psychology</Text>
-              <Text>GPA: 3.8/4.0, Dean's List (All Semesters)</Text>
-              <Text>Related Coursework: Human Development, Social Work Practice, Counseling Techniques, Crisis Intervention, Cultural Diversity</Text>
-            </View>
-          )}
+          ) : null}
         </View>
 
         {/* Experience Section */}
@@ -181,35 +176,12 @@ const HumanServicesResume = ({ formData }: TemplateProps) => {
                   <Text>{exp.years || ""}</Text>
                 </View>
                 <Text style={styles.role}>{exp.title || ""}</Text>
-                <Text style={styles.bullet}>• Provided compassionate support to individuals facing challenging life circumstances</Text>
-                <Text style={styles.bullet}>• Developed and implemented care plans tailored to client needs</Text>
+                {(exp.bullets ?? []).filter((b) => b.trim()).map((bullet, bulletIdx) => (
+                  <Text key={bulletIdx} style={styles.bullet}>• {bullet}</Text>
+                ))}
               </View>
             ))
-          ) : (
-            <>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.institution}>Atlanta Family Crisis Center</Text>
-                  <Text>May 2021 - Present</Text>
-                </View>
-                <Text style={styles.role}>Case Management Intern</Text>
-                <Text style={styles.bullet}>• Assist with intake assessments for clients seeking emergency housing and support services</Text>
-                <Text style={styles.bullet}>• Coordinate with community partners to connect clients with resources for housing, employment, and healthcare</Text>
-                <Text style={styles.bullet}>• Maintain detailed case notes and track client progress toward self-sufficiency goals</Text>
-                <Text style={styles.bullet}>• Participate in weekly case review meetings with interdisciplinary team to develop intervention strategies</Text>
-              </View>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.institution}>Grady Memorial Hospital</Text>
-                  <Text>Jan 2021 - May 2021</Text>
-                </View>
-                <Text style={styles.role}>Social Services Volunteer</Text>
-                <Text style={styles.bullet}>• Supported hospital social work department in connecting patients with community resources</Text>
-                <Text style={styles.bullet}>• Assisted with discharge planning for patients requiring continued care</Text>
-                <Text style={styles.bullet}>• Created resource guides for common patient needs including transportation, medication assistance, and food security</Text>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Leadership Section */}
@@ -218,34 +190,18 @@ const HumanServicesResume = ({ formData }: TemplateProps) => {
           {hasContent(formData.leadership, ['title', 'description']) ? (
             formData.leadership?.map((lead, idx) => (
               <View key={idx} style={styles.detailsContainer}>
-                <Text style={styles.institution}>{lead.title || ""}</Text>
-                <Text style={styles.bullet}>• {lead.description || ""}</Text>
+                <View style={styles.flexRow}>
+                  <Text style={styles.institution}>{lead.title || ""}</Text>
+                  <Text>{lead.years || ""}</Text>
+                </View>
+                {lead.role ? <Text style={styles.role}>{lead.role}</Text> : null}
+                {lead.description ? <Text style={styles.bullet}>• {lead.description}</Text> : null}
+                {(lead.bullets ?? []).filter((b) => b.trim()).map((bullet, bulletIdx) => (
+                  <Text key={bulletIdx} style={styles.bullet}>• {bullet}</Text>
+                ))}
               </View>
             ))
-          ) : (
-            <>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.institution}>Emory Peer Support Network</Text>
-                  <Text>Aug 2019 - Present</Text>
-                </View>
-                <Text style={styles.role}>Peer Counselor</Text>
-                <Text style={styles.bullet}>• Provide confidential peer counseling to students struggling with academic, personal, or mental health concerns</Text>
-                <Text style={styles.bullet}>• Complete 40+ hours of training in active listening, crisis response, and mental health first aid</Text>
-                <Text style={styles.bullet}>• Collaborate with campus counseling services to develop outreach programs focused on stress management</Text>
-              </View>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.institution}>Volunteer Emory</Text>
-                  <Text>Sep 2018 - Present</Text>
-                </View>
-                <Text style={styles.role}>Service Trip Leader</Text>
-                <Text style={styles.bullet}>• Lead bi-weekly service trips to local homeless shelter, coordinating 10-15 student volunteers</Text>
-                <Text style={styles.bullet}>• Organize donation drives collecting hygiene supplies and clothing for shelter residents</Text>
-                <Text style={styles.bullet}>• Design reflection activities to help volunteers process their experiences and deepen understanding of homelessness</Text>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Skills Section */}
@@ -253,15 +209,7 @@ const HumanServicesResume = ({ formData }: TemplateProps) => {
           <Text style={styles.sectionTitle}>SKILLS & CERTIFICATIONS</Text>
           {formData.skillsInterests && formData.skillsInterests.trim() !== '' ? (
             <Text>{formData.skillsInterests}</Text>
-          ) : (
-            <>
-              <Text style={styles.bullet}>• Case Management: Intake assessment, needs evaluation, resource coordination, progress documentation</Text>
-              <Text style={styles.bullet}>• Counseling Skills: Active listening, crisis intervention, motivational interviewing, trauma-informed care</Text>
-              <Text style={styles.bullet}>• Certifications: Mental Health First Aid, QPR Suicide Prevention, Trauma-Informed Care</Text>
-              <Text style={styles.bullet}>• Software: HMIS (Homeless Management Information System), Microsoft Office Suite, case management databases</Text>
-              <Text style={styles.bullet}>• Languages: English (native), Spanish (conversational)</Text>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Honors Section */}
@@ -271,13 +219,7 @@ const HumanServicesResume = ({ formData }: TemplateProps) => {
             formData.honorsList.filter(h => h.honor && h.honor.trim() !== '').map((honor, idx) => (
               <Text key={idx} style={styles.bullet}>• {honor.honor}</Text>
             ))
-          ) : (
-            <>
-              <Text style={styles.bullet}>• Human Services Student of the Year, Emory University (2021)</Text>
-              <Text style={styles.bullet}>• Community Impact Award, Volunteer Emory (2020)</Text>
-              <Text style={styles.bullet}>• Presidential Service Award, Gold Level - 250+ hours of community service (2019, 2020)</Text>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Custom Personal Fields Section if available */}

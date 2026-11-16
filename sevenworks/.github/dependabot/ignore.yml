@@ -1,3 +1,0 @@
-# Ignore PDF.js vulnerability since we've implemented a secure wrapper
-- vulnerability: GHSA-wgrm-67xf-hhpq
-  reason: Mitigated through code-level changes in SecurePdfViewer component

@@ -1,4 +1,5 @@
 import React from "react";
+import { contactLine } from "../shared";
 import { Document, Page, Text, View, StyleSheet, Font } from "@react-pdf/renderer";
 
 // Define proper formData interface
@@ -117,9 +118,9 @@ const styles = StyleSheet.create({
 
 const LegalResume = ({ formData }: TemplateProps) => {
   // Helper function to check if a data array has content
-  const hasContent = (arr: any[] | undefined, fields: string[]) => {
+  const hasContent = (arr: object[] | undefined, fields: string[]) => {
     return Array.isArray(arr) && arr.length > 0 && arr.some(item => 
-      fields.some(field => item[field] && String(item[field]).trim() !== '')
+      fields.some(field => (item as Record<string, unknown>)[field] && String((item as Record<string, unknown>)[field]).trim() !== '')
     );
   };
 
@@ -146,11 +147,11 @@ const LegalResume = ({ formData }: TemplateProps) => {
         {/* Header */}
         <View style={styles.header}>
           <Text style={dynamicStyles.name}>
-            {formData.firstName || "JANE"} {formData.middleName ? `${formData.middleName} ` : "D. "}
-            {formData.lastName || "ADVOCATE"}
+            {formData.firstName || ""} {formData.middleName ? `${formData.middleName} ` : ""}
+            {formData.lastName || ""}
           </Text>
           <Text style={styles.contactInfo}>
-            {formData.address || "123 Legal Way, Atlanta, GA 30322"} | {formData.phone || "(404) 123-4567"} | {formData.email || "jadvocate@emory.edu"}
+            {contactLine(formData)}
           </Text>
         </View>
 
@@ -171,37 +172,7 @@ const LegalResume = ({ formData }: TemplateProps) => {
                 </View>
               </View>
             ))
-          ) : (
-            // Default education entries
-            <>
-              <View style={styles.flexRow}>
-                <View style={styles.institution}>
-                  <Text style={styles.itemTitle}>EMORY UNIVERSITY SCHOOL OF LAW</Text>
-                  <Text>Juris Doctor Candidate</Text>
-                  <Text>GPA: 3.7/4.0</Text>
-                  <Text>Honors: Dean's List (all semesters); Top 10% of class</Text>
-                  <Text>Activities: Moot Court Special Teams, Emory Bankruptcy Developments Journal, Black Law Students Association</Text>
-                </View>
-                <View style={styles.dateLocation}>
-                  <Text>Atlanta, GA</Text>
-                  <Text>May 2024</Text>
-                </View>
-              </View>
-
-              <View style={styles.flexRow}>
-                <View style={styles.institution}>
-                  <Text style={styles.itemTitle}>SPELMAN COLLEGE</Text>
-                  <Text>Bachelor of Arts in Political Science, minor in Economics</Text>
-                  <Text>GPA: 3.8/4.0, Magna Cum Laude</Text>
-                  <Text>Honors: Phi Beta Kappa; Dean's List (all semesters); Department Achievement Award</Text>
-                </View>
-                <View style={styles.dateLocation}>
-                  <Text>Atlanta, GA</Text>
-                  <Text>May 2021</Text>
-                </View>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* LEGAL EXPERIENCE */}
@@ -218,7 +189,6 @@ const LegalResume = ({ formData }: TemplateProps) => {
                     <Text style={styles.itemRole}>{exp.title || ""}</Text>
                   </View>
                   <View style={styles.dateLocation}>
-                    <Text>Atlanta, GA</Text>
                     <Text>{exp.years || ""}</Text>
                   </View>
                 </View>
@@ -226,52 +196,10 @@ const LegalResume = ({ formData }: TemplateProps) => {
                   exp.bullets.map((bullet, bulletIdx) => (
                     <Text key={bulletIdx} style={styles.bullet}>• {bullet}</Text>
                   ))
-                ) : (
-                  <>
-                    <Text style={styles.bullet}>• Researched and drafted legal memoranda and court documents</Text>
-                    <Text style={styles.bullet}>• Assisted in case preparation and client communications</Text>
-                    <Text style={styles.bullet}>• Conducted legal research using Westlaw and LexisNexis</Text>
-                  </>
-                )}
+                ) : null}
               </View>
             ))
-          ) : (
-            // Default experience entries
-            <>
-              <View style={styles.itemContent}>
-                <View style={styles.flexRow}>
-                  <View style={styles.institution}>
-                    <Text style={styles.itemTitle}>KING & SPALDING LLP</Text>
-                    <Text style={styles.itemRole}>Summer Associate</Text>
-                  </View>
-                  <View style={styles.dateLocation}>
-                    <Text>Atlanta, GA</Text>
-                    <Text>May – Jul 2023</Text>
-                  </View>
-                </View>
-                <Text style={styles.bullet}>• Conducted research and drafted memoranda on various legal topics including corporate, real estate, and data privacy law</Text>
-                <Text style={styles.bullet}>• Assisted in preparation of trial exhibits and witness materials for a major securities litigation case</Text>
-                <Text style={styles.bullet}>• Drafted sections of briefs and motions in federal court cases, including dispositive motions</Text>
-                <Text style={styles.bullet}>• Gained exposure to multiple legal areas across four different practice groups during rotation program</Text>
-              </View>
-
-              <View style={styles.itemContent}>
-                <View style={styles.flexRow}>
-                  <View style={styles.institution}>
-                    <Text style={styles.itemTitle}>U.S. DISTRICT COURT, NORTHERN DISTRICT OF GEORGIA</Text>
-                    <Text style={styles.itemRole}>Judicial Intern, Honorable Eleanor L. Ross</Text>
-                  </View>
-                  <View style={styles.dateLocation}>
-                    <Text>Atlanta, GA</Text>
-                    <Text>Jan – Apr 2023</Text>
-                  </View>
-                </View>
-                <Text style={styles.bullet}>• Researched federal procedural and substantive law and drafted bench memoranda for pending cases</Text>
-                <Text style={styles.bullet}>• Assisted in preparation of court proceedings and observed federal trials, hearings, and sentencings</Text>
-                <Text style={styles.bullet}>• Reviewed and summarized trial transcripts for complex commercial litigation case</Text>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* LEADERSHIP & ACTIVITIES */}
@@ -288,57 +216,17 @@ const LegalResume = ({ formData }: TemplateProps) => {
                     {lead.role && <Text style={styles.itemRole}>{lead.role}</Text>}
                   </View>
                   <View style={styles.dateLocation}>
-                    <Text>{lead.years || "Present"}</Text>
+                    <Text>{lead.years || ""}</Text>
                   </View>
                 </View>
                 {Array.isArray(lead.bullets) && lead.bullets.length > 0 ? (
                   lead.bullets.map((bullet, bulletIdx) => (
                     <Text key={bulletIdx} style={styles.bullet}>• {bullet}</Text>
                   ))
-                ) : (
-                  <>
-                    <Text style={styles.bullet}>• Researched and drafted legal memoranda and court documents</Text>
-                    <Text style={styles.bullet}>• Assisted in case preparation and client communications</Text>
-                    <Text style={styles.bullet}>• Conducted legal research using Westlaw and LexisNexis</Text>
-                  </>
-                )}
+                ) : null}
               </View>
             ))
-          ) : (
-            // Default leadership entries
-            <>
-              <View style={styles.itemContent}>
-                <View style={styles.flexRow}>
-                  <View style={styles.institution}>
-                    <Text style={styles.itemTitle}>MOOT COURT SOCIETY, EMORY UNIVERSITY SCHOOL OF LAW</Text>
-                    <Text style={styles.itemRole}>Special Teams Executive Member</Text>
-                  </View>
-                  <View style={styles.dateLocation}>
-                    <Text>Atlanta, GA</Text>
-                    <Text>Aug 2022 – Present</Text>
-                  </View>
-                </View>
-                <Text style={styles.bullet}>• Selected for Frederick Douglass Moot Court Competition team through rigorous tryout process</Text>
-                <Text style={styles.bullet}>• Advanced to quarterfinals in regional competition and received Best Brief Award (top 5 of 32 teams)</Text>
-              </View>
-
-              <View style={styles.itemContent}>
-                <View style={styles.flexRow}>
-                  <View style={styles.institution}>
-                    <Text style={styles.itemTitle}>EMORY BANKRUPTCY DEVELOPMENTS JOURNAL</Text>
-                    <Text style={styles.itemRole}>Managing Editor</Text>
-                  </View>
-                  <View style={styles.dateLocation}>
-                    <Text>Atlanta, GA</Text>
-                    <Text>May 2022 – Present</Text>
-                  </View>
-                </View>
-                <Text style={styles.bullet}>• Oversee production schedule and coordinate with 8 associate editors in reviewing and editing articles</Text>
-                <Text style={styles.bullet}>• Selected from over 100 candidates based on writing competition and academic performance</Text>
-                <Text style={styles.bullet}>• Comment selected for publication: "Reforming Chapter 11 to Address Small Business Challenges"</Text>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* HONORS & AWARDS */}
@@ -350,15 +238,7 @@ const LegalResume = ({ formData }: TemplateProps) => {
             formData.honorsList.filter(h => h.honor && h.honor.trim() !== '').map((honor, idx) => (
               <Text key={idx} style={styles.bullet}>• {honor.honor}</Text>
             ))
-          ) : (
-            // Default honors entries
-            <>
-              <Text style={styles.bullet}>• Emory Law Dean's Achievement Scholarship, Full Tuition Merit Award</Text>
-              <Text style={styles.bullet}>• CALI Excellence for the Future Award, Civil Procedure (highest grade in class)</Text>
-              <Text style={styles.bullet}>• Finalist, Emory Law School Negotiation Competition, 2022</Text>
-              <Text style={styles.bullet}>• Georgia Association for Women Lawyers Outstanding Student Award, 2023</Text>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* SKILLS & INTERESTS */}
@@ -368,16 +248,7 @@ const LegalResume = ({ formData }: TemplateProps) => {
           {formData.skillsInterests && formData.skillsInterests.trim() !== '' ? (
             // Use actual skills and interests data
             <Text>{formData.skillsInterests}</Text>
-          ) : (
-            // Default skills and interests
-            <>
-              <Text style={styles.bullet}>• Technical Skills: Proficient in Westlaw, LexisNexis, Bloomberg Law, PACER, Microsoft Office Suite</Text>
-              <Text style={styles.bullet}>• Bar Admissions: Registered for Georgia Bar Examination (July 2024)</Text>
-              <Text style={styles.bullet}>• Languages: Intermediate Spanish (reading, writing, speaking)</Text>
-              <Text style={styles.bullet}>• Pro Bono: 100+ hours with Atlanta Legal Aid Society, Expungement Project (2022-2023)</Text>
-              <Text style={styles.bullet}>• Interests: Marathon running (completed Chicago Marathon 2022), jazz piano, science fiction literature</Text>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Custom Personal Fields Section if available */}

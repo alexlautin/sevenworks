@@ -115,9 +115,9 @@ const styles = StyleSheet.create({
 
 const BusinessResume = ({ formData }: TemplateProps) => {
   // Helper function to check if a data array has content
-  const hasContent = (arr: any[] | undefined, fields: string[]) => {
+  const hasContent = (arr: object[] | undefined, fields: string[]) => {
     return Array.isArray(arr) && arr.length > 0 && arr.some(item => 
-      fields.some(field => item[field] && String(item[field]).trim() !== '')
+      fields.some(field => (item as Record<string, unknown>)[field] && String((item as Record<string, unknown>)[field]).trim() !== '')
     );
   };
 
@@ -143,8 +143,8 @@ const BusinessResume = ({ formData }: TemplateProps) => {
         <View style={styles.header}>
           <View style={styles.headerLeft}>
             <Text style={dynamicStyles.name}>
-              {formData.firstName || "JOHN"} {formData.middleName ? formData.middleName + " " : ""}
-              {formData.lastName || "BUSINESS"}
+              {formData.firstName || ""} {formData.middleName ? formData.middleName + " " : ""}
+              {formData.lastName || ""}
             </Text>
             {formData.address && <Text style={styles.contact}>{formData.address}</Text>}
           </View>
@@ -167,16 +167,7 @@ const BusinessResume = ({ formData }: TemplateProps) => {
                 <Text style={styles.italic}>{edu.degree || ""}</Text>
               </View>
             ))
-          ) : (
-            <View style={styles.subsection}>
-              <View style={styles.flexRow}>
-                <Text style={styles.bold}>University of Business</Text>
-                <Text>2018 - 2022</Text>
-              </View>
-              <Text style={styles.italic}>Bachelor of Business Administration</Text>
-              <Text>GPA: 3.8/4.0, Dean's List</Text>
-            </View>
-          )}
+          ) : null}
         </View>
 
         {/* Experience Section */}
@@ -195,29 +186,7 @@ const BusinessResume = ({ formData }: TemplateProps) => {
                 ))}
               </View>
             ))
-          ) : (
-            <>
-              <View style={styles.subsection}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.bold}>Business Consulting Firm</Text>
-                  <Text>Jan 2022 - Present</Text>
-                </View>
-                <Text style={styles.italic}>Business Analyst</Text>
-                <Text style={styles.bullet}>• Analyze business processes and identify areas for improvement</Text>
-                <Text style={styles.bullet}>• Develop strategic recommendations based on data analysis</Text>
-                <Text style={styles.bullet}>• Create and present detailed reports to executive leadership</Text>
-              </View>
-              <View style={styles.subsection}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.bold}>Financial Services Company</Text>
-                  <Text>May 2020 - Dec 2021</Text>
-                </View>
-                <Text style={styles.italic}>Financial Analyst Intern</Text>
-                <Text style={styles.bullet}>• Assisted in financial forecasting and budget preparation</Text>
-                <Text style={styles.bullet}>• Conducted market research and prepared competitive analysis</Text>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Leadership Section */}
@@ -237,22 +206,7 @@ const BusinessResume = ({ formData }: TemplateProps) => {
                 ))}
               </View>
             ))
-          ) : (
-            <>
-              <View style={styles.subsection}>
-                <Text style={styles.bold}>Business Students Association</Text>
-                <Text style={styles.italic}>Vice President</Text>
-                <Text style={styles.bullet}>• Led a team of 5 officers in organizing networking events and workshops</Text>
-                <Text style={styles.bullet}>• Increased membership by 25% through targeted recruitment campaigns</Text>
-              </View>
-              <View style={styles.subsection}>
-                <Text style={styles.bold}>Volunteer Financial Literacy Program</Text>
-                <Text style={styles.italic}>Volunteer Instructor</Text>
-                <Text style={styles.bullet}>• Taught financial literacy to high school students in underserved communities</Text>
-                <Text style={styles.bullet}>• Developed curriculum materials focused on personal finance</Text>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Honors Section */}
@@ -262,13 +216,7 @@ const BusinessResume = ({ formData }: TemplateProps) => {
             formData.honorsList.filter(h => h.honor && h.honor.trim() !== '').map((honor, idx) => (
               <Text key={idx} style={styles.bullet}>• {honor.honor}</Text>
             ))
-          ) : (
-            <>
-              <Text style={styles.bullet}>• Dean's List Scholar (All semesters)</Text>
-              <Text style={styles.bullet}>• Business Leadership Award, 2021</Text>
-              <Text style={styles.bullet}>• National Business Merit Scholarship</Text>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Skills Section */}
@@ -276,14 +224,7 @@ const BusinessResume = ({ formData }: TemplateProps) => {
           <Text style={styles.sectionTitle}>Skills & Interests</Text>
           {formData.skillsInterests && formData.skillsInterests.trim() !== '' ? (
             <Text>{formData.skillsInterests}</Text>
-          ) : (
-            <>
-              <Text><Text style={styles.bold}>Technical Skills:</Text> Microsoft Excel (advanced), PowerPoint, Tableau, SQL, SAP</Text>
-              <Text><Text style={styles.bold}>Languages:</Text> English (native), Spanish (professional working proficiency)</Text>
-              <Text><Text style={styles.bold}>Certifications:</Text> Bloomberg Market Concepts, Google Analytics</Text>
-              <Text><Text style={styles.bold}>Interests:</Text> Market analysis, entrepreneurship, financial markets, business innovation</Text>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Custom Personal Fields Section if available */}

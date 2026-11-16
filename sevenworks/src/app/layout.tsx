@@ -1,37 +1,25 @@
-// src/app/layout.tsx
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import classNames from 'classnames';
-import { ResumeProvider } from "./editor/context/resumeContext";
-import { FormProvider } from "./editor/context/formcontext";
-import ClientProviders from "../components/ClientProviders";
+import { AuthProvider } from "@/components/auth";
+import { DemoBanner } from "@/components/demo-banner";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "Sevenworks",
-  description: "Sevenworks app",
+  title: "SevenWorks · Resume builder",
+  description: "Pick a template, fill in your story, and watch a polished PDF resume update as you type.",
+  icons: { icon: "/favicon.ico" },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={classNames(inter.className, "antialiased bg-[#2b2d42]")}>
-        <FormProvider>
-          <ResumeProvider>
-            <ClientProviders>
-              {children}
-            </ClientProviders>
-          </ResumeProvider>
-        </FormProvider>
+    <html lang="en" className={inter.variable}>
+      <body className="font-sans">
+        <AuthProvider>
+          <DemoBanner />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
