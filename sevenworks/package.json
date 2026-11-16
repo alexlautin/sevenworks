@@ -26,7 +26,6 @@
     "react-dropzone": "^14.3.5",
     "react-firebase-hooks": "^5.1.1",
     "react-icons": "^5.5.0",
-    "svgr": "^1.10.0",
     "tailwind-merge": "^3.0.1",
     "tsconfig-paths": "^4.2.0"
   },
@@ -37,7 +36,6 @@
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",
-    "canvas": "^3.1.0",
     "eslint": "^9",
     "eslint-config-next": "^15.2.4",
     "npm-audit-resolver": "^3.0.0-RC.0",

@@ -8,6 +8,12 @@ const nextConfig = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
+  webpack: (config) => {
+    // pdf.js lists the native `canvas` package as an optional Node dependency.
+    // It is never used in the browser, and pnpm does not build it.
+    config.resolve.alias = { ...config.resolve.alias, canvas: false };
+    return config;
+  },
 }
 
 module.exports = nextConfig
