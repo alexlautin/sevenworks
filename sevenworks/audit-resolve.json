@@ -1,9 +1,0 @@
-{
-  "decisions": {
-    "1096032|pdfjs-dist": {
-      "decision": "ignore",
-      "madeAt": 1714498364452,
-      "reason": "Mitigated through code changes in SecurePdfViewer component that disables JavaScript execution in PDFs"
-    }
-  }
-}

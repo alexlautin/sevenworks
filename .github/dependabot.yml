@@ -4,7 +4,3 @@ updates:
     directory: "/sevenworks"
     schedule:
       interval: "weekly"
-    ignore:
-      # Ignoring major version updates for pdfjs-dist because @react-pdf-viewer/core requires a specific version range
-      - dependency-name: "pdfjs-dist"
-        update-types: ["version-update:semver-major"]
