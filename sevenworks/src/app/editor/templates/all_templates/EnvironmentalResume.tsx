@@ -1,4 +1,5 @@
 import React from "react";
+import { contactLine } from "../shared";
 import { Document, Page, Text, View, StyleSheet, Font } from "@react-pdf/renderer";
 
 // Define proper formData interface
@@ -140,11 +141,11 @@ const EnvironmentalResume = ({ formData }: TemplateProps) => {
         {/* Header */}
         <View style={styles.header}>
           <Text style={dynamicStyles.name}>
-            {formData.firstName || "JAMIE"} {formData.middleName ? formData.middleName + " " : ""}
-            {formData.lastName || "EARTH"}
+            {formData.firstName || ""} {formData.middleName ? formData.middleName + " " : ""}
+            {formData.lastName || ""}
           </Text>
           <Text style={styles.contact}>
-            {formData.address || "123 Sustainable Street, Atlanta, GA 30322"} | {formData.phone || "(404) 555-1234"} | {formData.email || "jearth@gmail.com"}
+            {contactLine(formData)}
           </Text>
         </View>
 
@@ -161,29 +162,7 @@ const EnvironmentalResume = ({ formData }: TemplateProps) => {
                 <Text style={styles.role}>{edu.degree || ""}</Text>
               </View>
             ))
-          ) : (
-            <>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.company}>EMORY UNIVERSITY</Text>
-                  <Text>Atlanta, GA • May 2022</Text>
-                </View>
-                <Text style={styles.role}>Master of Science in Environmental Sciences</Text>
-                <Text style={styles.bullet}>• GPA: 3.85/4.00</Text>
-                <Text style={styles.bullet}>• Thesis: "Urban Heat Island Mitigation Strategies through Green Infrastructure Implementation"</Text>
-                <Text style={styles.bullet}>• Relevant Coursework: Environmental Policy, Conservation Biology, Climate Science, GIS for Environmental Analysis, Environmental Justice, Sustainable Development</Text>
-              </View>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.company}>UNIVERSITY OF GEORGIA</Text>
-                  <Text>Athens, GA • May 2020</Text>
-                </View>
-                <Text style={styles.role}>Bachelor of Science in Environmental Engineering, Minor in Public Policy</Text>
-                <Text style={styles.bullet}>• GPA: 3.78/4.00, Magna Cum Laude</Text>
-                <Text style={styles.bullet}>• Honors Thesis: "Assessing Microplastic Pollution in Urban Watersheds"</Text>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Experience Section */}
@@ -202,41 +181,7 @@ const EnvironmentalResume = ({ formData }: TemplateProps) => {
                 ))}
               </View>
             ))
-          ) : (
-            <>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.company}>U.S. ENVIRONMENTAL PROTECTION AGENCY, REGION 4</Text>
-                  <Text>Atlanta, GA • Jul 2022 - Present</Text>
-                </View>
-                <Text style={styles.role}>Environmental Scientist</Text>
-                <Text style={styles.bullet}>• Conduct environmental impact assessments for proposed development projects in the Southeast region</Text>
-                <Text style={styles.bullet}>• Analyze water quality data from 15+ monitoring stations to track compliance with Clean Water Act standards</Text>
-                <Text style={styles.bullet}>• Collaborate with state agencies and local stakeholders on watershed protection initiatives</Text>
-                <Text style={styles.bullet}>• Prepare technical reports and give presentations to community groups on environmental findings</Text>
-              </View>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.company}>THE NATURE CONSERVANCY</Text>
-                  <Text>Atlanta, GA • May - Aug 2021</Text>
-                </View>
-                <Text style={styles.role}>Conservation Policy Intern</Text>
-                <Text style={styles.bullet}>• Researched state-level conservation policies and prepared briefings for advocacy team</Text>
-                <Text style={styles.bullet}>• Assisted in developing GIS maps of priority conservation areas in Georgia</Text>
-                <Text style={styles.bullet}>• Supported community outreach efforts for urban conservation initiatives</Text>
-              </View>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.company}>ATLANTA REGIONAL COMMISSION</Text>
-                  <Text>Atlanta, GA • Jan - Apr 2021</Text>
-                </View>
-                <Text style={styles.role}>Sustainability Planning Assistant</Text>
-                <Text style={styles.bullet}>• Contributed to the development of Atlanta's Climate Action Plan through research and stakeholder engagement</Text>
-                <Text style={styles.bullet}>• Conducted analysis of transportation emissions data to inform sustainable mobility planning</Text>
-                <Text style={styles.bullet}>• Assisted in organizing community workshops on climate resilience strategies</Text>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Projects Section */}
@@ -256,28 +201,7 @@ const EnvironmentalResume = ({ formData }: TemplateProps) => {
                 ))}
               </View>
             ))
-          ) : (
-            <>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.company}>CHATTAHOOCHEE RIVER WATERSHED MONITORING PROJECT</Text>
-                  <Text>2021-2022</Text>
-                </View>
-                <Text style={styles.bullet}>• Led team of 4 researchers in quarterly water quality sampling at 12 sites along the Chattahoochee River</Text>
-                <Text style={styles.bullet}>• Analyzed macroinvertebrate populations as indicators of ecosystem health</Text>
-                <Text style={styles.bullet}>• Developed interactive map of findings for public education on watershed health</Text>
-              </View>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.company}>URBAN HEAT ISLAND MITIGATION STUDY</Text>
-                  <Text>2020-2021</Text>
-                </View>
-                <Text style={styles.bullet}>• Designed research methodology to assess temperature differences across Atlanta neighborhoods</Text>
-                <Text style={styles.bullet}>• Correlated urban canopy cover with temperature data using GIS analysis</Text>
-                <Text style={styles.bullet}>• Presented findings at the Southeastern Climate Conference, leading to implementation of cooling strategies in vulnerable neighborhoods</Text>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Skills Section */}
@@ -285,15 +209,7 @@ const EnvironmentalResume = ({ formData }: TemplateProps) => {
           <Text style={styles.sectionTitle}>TECHNICAL SKILLS</Text>
           {formData.skillsInterests && formData.skillsInterests.trim() !== '' ? (
             <Text>{formData.skillsInterests}</Text>
-          ) : (
-            <>
-              <Text style={styles.bullet}>• Environmental Monitoring: Water quality testing, soil sampling, air quality monitoring, ecological surveys</Text>
-              <Text style={styles.bullet}>• Technical Tools: ArcGIS, QGIS, R, Python, EPA-SWMM, EnviroMapper, Remote sensing analysis</Text>
-              <Text style={styles.bullet}>• Laboratory Techniques: Spectrophotometry, chromatography, microbiology, water/soil analytics</Text>
-              <Text style={styles.bullet}>• Policy Analysis: Environmental impact assessment, regulatory compliance, policy evaluation</Text>
-              <Text style={styles.bullet}>• Field Experience: Wetland delineation, habitat assessment, biodiversity surveys, GPS mapping</Text>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Awards & Certifications Section */}
@@ -303,25 +219,9 @@ const EnvironmentalResume = ({ formData }: TemplateProps) => {
             formData.honorsList.filter(h => h.honor && h.honor.trim() !== '').map((honor, idx) => (
               <Text key={idx} style={styles.bullet}>• {honor.honor}</Text>
             ))
-          ) : (
-            <>
-              <Text style={styles.bullet}>• USACE Wetland Delineation Certification</Text>
-              <Text style={styles.bullet}>• HAZWOPER 40-Hour Certification</Text>
-              <Text style={styles.bullet}>• Emory Environmental Leadership Award (2022)</Text>
-              <Text style={styles.bullet}>• EPA STAR Graduate Fellowship</Text>
-              <Text style={styles.bullet}>• GIS Professional (GISP) Certification</Text>
-            </>
-          )}
+          ) : null}
         </View>
 
-        {/* Professional Affiliations Section */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>PROFESSIONAL AFFILIATIONS</Text>
-          <Text style={styles.bullet}>• Society of Environmental Scientists and Engineers</Text>
-          <Text style={styles.bullet}>• American Association for the Advancement of Science</Text>
-          <Text style={styles.bullet}>• Georgia Environmental Network</Text>
-          <Text style={styles.bullet}>• Urban Land Institute - Sustainable Development Council</Text>
-        </View>
 
         {/* Custom Personal Fields Section if available */}
         {Array.isArray(formData.customPersonal) && formData.customPersonal.length > 0 && formData.customPersonal.some(field => field.label && field.value) && (

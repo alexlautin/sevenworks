@@ -1,4 +1,5 @@
 import React from "react";
+import { contactLine } from "../shared";
 import { Document, Page, Text, View, StyleSheet, Font } from "@react-pdf/renderer";
 
 // Define proper formData interface
@@ -142,11 +143,11 @@ const DataAnalystResume = ({ formData }: TemplateProps) => {
         {/* Header */}
         <View style={styles.header}>
           <Text style={dynamicStyles.name}>
-            {formData.firstName || "ALEX"} {formData.middleName ? `${formData.middleName} ` : ""}
-            {formData.lastName || "ANALYST"}
+            {formData.firstName || ""} {formData.middleName ? `${formData.middleName} ` : ""}
+            {formData.lastName || ""}
           </Text>
           <Text style={styles.contactInfo}>
-            {formData.address || "123 Data Drive, Atlanta, GA 30322"} | {formData.phone || "(404) 555-1234"} | {formData.email || "alex.analyst@email.com"} | linkedin.com/in/alexanalyst
+            {contactLine(formData)}
           </Text>
         </View>
 
@@ -167,23 +168,7 @@ const DataAnalystResume = ({ formData }: TemplateProps) => {
                 </View>
               </View>
             ))
-          ) : (
-            // Default education entries
-            <>
-              <View style={styles.flexRow}>
-                <View style={styles.institution}>
-                  <Text style={styles.itemTitle}>EMORY UNIVERSITY, GOIZUETA BUSINESS SCHOOL</Text>
-                  <Text>Bachelor of Business Administration, Concentration in Information Systems & Operations Mgmt.</Text>
-                  <Text>GPA: 3.7/4.0</Text>
-                  <Text>Related Coursework: Data Management, Data Visualization, Analytics Programming, Database Systems</Text>
-                </View>
-                <View style={styles.dateLocation}>
-                  <Text>Atlanta, GA</Text>
-                  <Text>May 2023</Text>
-                </View>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* SKILLS */}
@@ -192,17 +177,7 @@ const DataAnalystResume = ({ formData }: TemplateProps) => {
           {formData.skillsInterests && formData.skillsInterests.trim() !== '' ? (
             // Use actual skills data
             <Text>{formData.skillsInterests}</Text>
-          ) : (
-            // Default skills entries
-            <>
-              <Text style={styles.bullet}>• Programming: Python, R, SQL, JavaScript, HTML/CSS</Text>
-              <Text style={styles.bullet}>• Data Analysis: Pandas, NumPy, SciPy, Scikit-learn, Statistical Analysis</Text>
-              <Text style={styles.bullet}>• Visualization: Tableau, Power BI, Matplotlib, Seaborn, D3.js</Text>
-              <Text style={styles.bullet}>• Database: MySQL, PostgreSQL, MongoDB, Database Design and Administration</Text>
-              <Text style={styles.bullet}>• Tools: Git, Jupyter Notebook, Excel, Google Analytics, JIRA, Azure</Text>
-              <Text style={styles.bullet}>• Machine Learning: Regression, Classification, Clustering, Natural Language Processing</Text>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* EXPERIENCE */}
@@ -227,44 +202,7 @@ const DataAnalystResume = ({ formData }: TemplateProps) => {
                 ))}
               </View>
             ))
-          ) : (
-            // Default experience entries
-            <>
-              <View style={styles.itemContent}>
-                <View style={styles.flexRow}>
-                  <View style={styles.institution}>
-                    <Text style={styles.itemTitle}>ACCENTURE</Text>
-                    <Text style={styles.itemRole}>Data Analytics Consultant</Text>
-                  </View>
-                  <View style={styles.dateLocation}>
-                    <Text>Atlanta, GA</Text>
-                    <Text>Jun 2023 – Present</Text>
-                  </View>
-                </View>
-                <Text style={styles.bullet}>• Lead a team of 3 analysts in developing dashboards and reports for a Fortune 500 retail client, resulting in 15% improvement in inventory management</Text>
-                <Text style={styles.bullet}>• Designed and implemented ETL processes using Python and SQL to integrate data from multiple sources, improving data accuracy by 25%</Text>
-                <Text style={styles.bullet}>• Created predictive models for customer segmentation using machine learning algorithms, increasing marketing campaign effectiveness by 20%</Text>
-                <Text style={styles.bullet}>• Conducted A/B testing on website features, leading to a 10% increase in conversion rates</Text>
-              </View>
-
-              <View style={styles.itemContent}>
-                <View style={styles.flexRow}>
-                  <View style={styles.institution}>
-                    <Text style={styles.itemTitle}>THE HOME DEPOT</Text>
-                    <Text style={styles.itemRole}>Data Analytics Intern</Text>
-                  </View>
-                  <View style={styles.dateLocation}>
-                    <Text>Atlanta, GA</Text>
-                    <Text>May – Aug 2022</Text>
-                  </View>
-                </View>
-                <Text style={styles.bullet}>• Analyzed sales data across 2,200 stores to identify trends and opportunities, presenting findings to senior management</Text>
-                <Text style={styles.bullet}>• Developed interactive Tableau dashboards to visualize KPIs, improving executive decision-making efficiency</Text>
-                <Text style={styles.bullet}>• Automated weekly reporting using Python scripts, saving the team approximately 10 hours per week</Text>
-                <Text style={styles.bullet}>• Collaborated with cross-functional teams to optimize inventory allocation algorithms, reducing overstock by 8%</Text>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* PROJECTS */}
@@ -275,31 +213,13 @@ const DataAnalystResume = ({ formData }: TemplateProps) => {
             // Map through leadership data as projects
             formData.leadership?.map((lead, idx) => (
               <View key={idx} style={styles.itemContent}>
-                <Text style={styles.itemTitle}>{lead.title || "Project"}</Text>
+                <Text style={styles.itemTitle}>{lead.title || ""}</Text>
                 {Array.isArray(lead.bullets) && lead.bullets.map((bullet, bulletIdx) => (
                   <Text key={bulletIdx} style={styles.bullet}>• {bullet}</Text>
                 ))}
               </View>
             ))
-          ) : (
-            // Default project entries
-            <>
-              <View style={styles.itemContent}>
-                <Text style={styles.itemTitle}>CUSTOMER CHURN PREDICTION MODEL</Text>
-                <Text style={styles.bullet}>• Developed a machine learning model using Python (scikit-learn) to predict customer churn with 85% accuracy</Text>
-                <Text style={styles.bullet}>• Implemented feature engineering techniques to identify key indicators of churn risk</Text>
-                <Text style={styles.bullet}>• Created a web application using Flask to allow business users to interact with the model</Text>
-                <Text style={styles.bullet}>• GitHub: github.com/alexanalyst/churn-prediction</Text>
-              </View>
-
-              <View style={styles.itemContent}>
-                <Text style={styles.itemTitle}>SALES FORECASTING DASHBOARD</Text>
-                <Text style={styles.bullet}>• Built an end-to-end data pipeline using Python, SQL, and Airflow to extract and transform sales data</Text>
-                <Text style={styles.bullet}>• Implemented time series forecasting models (ARIMA, Prophet) to predict future sales with 92% accuracy</Text>
-                <Text style={styles.bullet}>• Designed an interactive Tableau dashboard allowing stakeholders to explore forecasts by region and product category</Text>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* CERTIFICATIONS & AWARDS */}
@@ -323,28 +243,6 @@ const DataAnalystResume = ({ formData }: TemplateProps) => {
           )}
         </View>
 
-        {/* LEADERSHIP & ACTIVITIES */}
-        <View>
-          <Text style={styles.sectionHeader}>LEADERSHIP & ACTIVITIES</Text>
-          
-          <View style={styles.itemContent}>
-            <View style={styles.flexRow}>
-              <Text style={styles.itemTitle}>Emory Data Science Club</Text>
-              <Text>2020 – 2023</Text>
-            </View>
-            <Text style={styles.bullet}>• Vice President (2022-2023): Led workshops on data visualization and machine learning for 50+ members</Text>
-            <Text style={styles.bullet}>• Organized annual datathon event, securing sponsorships from local tech companies</Text>
-          </View>
-          
-          <View style={styles.itemContent}>
-            <View style={styles.flexRow}>
-              <Text style={styles.itemTitle}>Volunteer Data Analyst, Atlanta Food Bank</Text>
-              <Text>2021 – 2023</Text>
-            </View>
-            <Text style={styles.bullet}>• Analyzed donation patterns and distribution efficiency, helping optimize resource allocation</Text>
-            <Text style={styles.bullet}>• Created visualizations to support grant applications, assisting in securing $50,000 in additional funding</Text>
-          </View>
-        </View>
 
         {/* Custom Personal Fields Section if available */}
         {Array.isArray(formData.customPersonal) && formData.customPersonal.length > 0 && formData.customPersonal.some(field => field.label && field.value) && (

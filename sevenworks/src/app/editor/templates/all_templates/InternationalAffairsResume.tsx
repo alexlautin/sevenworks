@@ -1,4 +1,5 @@
 import React from "react";
+import { contactLine } from "../shared";
 import { Document, Page, Text, View, StyleSheet, Font } from "@react-pdf/renderer";
 
 // Define proper formData interface
@@ -140,11 +141,11 @@ const InternationalAffairsResume = ({ formData }: TemplateProps) => {
         {/* Header Section */}
         <View style={styles.header}>
           <Text style={dynamicStyles.name}>
-            {formData.firstName || "SOPHIA"} {formData.middleName ? formData.middleName + " " : ""}
-            {formData.lastName || "GLOBAL"}
+            {formData.firstName || ""} {formData.middleName ? formData.middleName + " " : ""}
+            {formData.lastName || ""}
           </Text>
           <Text style={styles.contact}>
-            {formData.address || "123 International Way, Atlanta, GA 30322"} | {formData.phone || "(404) 555-7890"} | {formData.email || "sglobal@emory.edu"}
+            {contactLine(formData)}
           </Text>
         </View>
 
@@ -161,32 +162,7 @@ const InternationalAffairsResume = ({ formData }: TemplateProps) => {
                 <Text style={styles.role}>{edu.degree || ""}</Text>
               </View>
             ))
-          ) : (
-            <>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.organization}>EMORY UNIVERSITY</Text>
-                  <Text>Atlanta, GA</Text>
-                </View>
-                <View style={styles.flexRow}>
-                  <Text style={styles.role}>Bachelor of Arts in International Studies, Minor in Economics</Text>
-                  <Text>May 2023</Text>
-                </View>
-                <Text>GPA: 3.85/4.00, Dean's List (All Semesters)</Text>
-                <Text>Relevant Coursework: International Relations Theory, Global Political Economy, Diplomatic History, International Security, International Organizations, Middle East Politics, International Law</Text>
-              </View>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.organization}>SCIENCES PO PARIS</Text>
-                  <Text>Paris, France</Text>
-                </View>
-                <View style={styles.flexRow}>
-                  <Text style={styles.role}>Study Abroad, Political Science and International Relations</Text>
-                  <Text>Fall 2021</Text>
-                </View>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Experience Section */}
@@ -205,37 +181,7 @@ const InternationalAffairsResume = ({ formData }: TemplateProps) => {
                 ))}
               </View>
             ))
-          ) : (
-            <>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.organization}>U.S. DEPARTMENT OF STATE, BUREAU OF EUROPEAN AND EURASIAN AFFAIRS</Text>
-                  <Text>Washington, DC</Text>
-                </View>
-                <View style={styles.flexRow}>
-                  <Text style={styles.role}>Policy and Research Intern</Text>
-                  <Text>May – Aug 2022</Text>
-                </View>
-                <Text style={styles.bullet}>• Drafted and edited daily briefing materials on EU-US relations and NATO policy development</Text>
-                <Text style={styles.bullet}>• Researched and analyzed political and economic developments in Eastern Europe</Text>
-                <Text style={styles.bullet}>• Prepared background materials for diplomatic engagements and official meetings</Text>
-                <Text style={styles.bullet}>• Produced weekly reports summarizing regional media coverage of U.S. foreign policy</Text>
-              </View>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.organization}>THE CARTER CENTER, CONFLICT RESOLUTION PROGRAM</Text>
-                  <Text>Atlanta, GA</Text>
-                </View>
-                <View style={styles.flexRow}>
-                  <Text style={styles.role}>Research Assistant</Text>
-                  <Text>Jan – May 2022</Text>
-                </View>
-                <Text style={styles.bullet}>• Conducted research on peace processes and conflict resolution strategies in Syria and South Sudan</Text>
-                <Text style={styles.bullet}>• Compiled and analyzed data on political violence and ceasefire violations</Text>
-                <Text style={styles.bullet}>• Assisted in organizing roundtable discussions with international stakeholders</Text>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Leadership Section */}
@@ -255,29 +201,7 @@ const InternationalAffairsResume = ({ formData }: TemplateProps) => {
                 ))}
               </View>
             ))
-          ) : (
-            <>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.organization}>EMORY INTERNATIONAL RELATIONS ASSOCIATION</Text>
-                  <Text>2020 – Present</Text>
-                </View>
-                <Text style={styles.role}>Vice President (2022-23), Model UN Committee Chair (2021-22)</Text>
-                <Text style={styles.bullet}>• Lead executive board of 8 officers in planning campus events and conferences</Text>
-                <Text style={styles.bullet}>• Organize annual Model UN conference hosting 300+ delegates from 25 universities</Text>
-                <Text style={styles.bullet}>• Coordinate speaker series featuring diplomats and international affairs experts</Text>
-              </View>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.organization}>EMORY JOURNAL OF INTERNATIONAL AFFAIRS</Text>
-                  <Text>2019 – Present</Text>
-                </View>
-                <Text style={styles.role}>Senior Editor</Text>
-                <Text style={styles.bullet}>• Review and edit undergraduate submissions on global politics, economics, and security</Text>
-                <Text style={styles.bullet}>• Published article: "The Evolution of EU Migration Policy in Response to the Syrian Refugee Crisis"</Text>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Skills Section */}
@@ -285,14 +209,7 @@ const InternationalAffairsResume = ({ formData }: TemplateProps) => {
           <Text style={styles.sectionTitle}>SKILLS & QUALIFICATIONS</Text>
           {formData.skillsInterests && formData.skillsInterests.trim() !== '' ? (
             <Text>{formData.skillsInterests}</Text>
-          ) : (
-            <>
-              <Text style={styles.bullet}>• Languages: English (native), French (fluent), Arabic (intermediate), Spanish (basic)</Text>
-              <Text style={styles.bullet}>• Research Skills: Policy analysis, data visualization, qualitative and quantitative research methods</Text>
-              <Text style={styles.bullet}>• Technical Skills: Proficient in R, Stata, Bloomberg Terminal, ArcGIS; Advanced Microsoft Office Suite</Text>
-              <Text style={styles.bullet}>• Regional Expertise: Middle East and North Africa, European Union, Transatlantic Relations</Text>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Honors Section */}
@@ -302,14 +219,7 @@ const InternationalAffairsResume = ({ formData }: TemplateProps) => {
             formData.honorsList.filter(h => h.honor && h.honor.trim() !== '').map((honor, idx) => (
               <Text key={idx} style={styles.bullet}>• {honor.honor}</Text>
             ))
-          ) : (
-            <>
-              <Text style={styles.bullet}>• Emory University Woodruff Scholar, Full Merit Scholarship (2019-2023)</Text>
-              <Text style={styles.bullet}>• Outstanding Delegate Award, National Model United Nations Conference (2022)</Text>
-              <Text style={styles.bullet}>• Foreign Language and Area Studies (FLAS) Fellowship for Arabic Study (Summer 2021)</Text>
-              <Text style={styles.bullet}>• Institute for International Public Policy Fellowship (2020-2023)</Text>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Custom Personal Fields Section if available */}

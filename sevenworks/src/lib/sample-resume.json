@@ -1,0 +1,60 @@
+{
+  "firstName": "Maya",
+  "middleName": "",
+  "lastName": "Okafor",
+  "email": "maya.okafor@example.com",
+  "phone": "(404) 555-0182",
+  "address": "Atlanta, GA",
+  "font": "Arial",
+  "fontSize": 10,
+  "education": [
+    { "institution": "Emory University", "degree": "B.S. in Quantitative Sciences, Minor in Economics · GPA 3.8/4.0", "years": "Aug 2021 – May 2025" }
+  ],
+  "experience": [
+    {
+      "title": "Data Analyst Intern",
+      "company": "Delta Air Lines",
+      "years": "May 2024 – Aug 2024",
+      "bullets": [
+        "Built a Tableau dashboard tracking on-time performance for 40+ hubs, now used in weekly ops reviews",
+        "Automated a manual Excel report with Python and SQL, saving the team about 6 hours each week",
+        "Analyzed 2M+ booking records to find drivers of last-minute cancellations and presented findings to directors"
+      ]
+    },
+    {
+      "title": "Research Assistant",
+      "company": "Emory Center for Data Science",
+      "years": "Jan 2023 – Apr 2024",
+      "bullets": [
+        "Cleaned and merged public health datasets for a study on vaccination access in Georgia counties",
+        "Wrote reproducible R notebooks and co-authored a poster presented at the Emory research symposium"
+      ]
+    }
+  ],
+  "leadership": [
+    {
+      "title": "Emory Women in STEM",
+      "role": "Vice President",
+      "years": "2023 – 2025",
+      "description": "",
+      "bullets": [
+        "Led a 12-person board and grew membership by 35% through a peer mentoring program",
+        "Organized a 150-attendee career fair with partners from Microsoft, NCR, and the CDC"
+      ]
+    },
+    {
+      "title": "HackEmory",
+      "role": "Logistics Lead",
+      "years": "2022 – 2024",
+      "description": "",
+      "bullets": ["Coordinated venue, sponsors, and judging for a 300-person annual hackathon"]
+    }
+  ],
+  "honorsList": [
+    { "honor": "Dean's List, all semesters" },
+    { "honor": "Goizueta Scholar Award, 2023" },
+    { "honor": "1st place, Emory Datathon 2024" }
+  ],
+  "skillsInterests": "Skills: Python (pandas, scikit-learn), SQL, R, Tableau, Excel, Git. Languages: English (native), French (professional). Interests: urban transit, long-distance running, jazz piano.",
+  "customPersonal": [{ "id": 1, "label": "LinkedIn", "value": "linkedin.com/in/mayaokafor" }]
+}

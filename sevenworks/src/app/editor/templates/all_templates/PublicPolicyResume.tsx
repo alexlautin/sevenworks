@@ -1,4 +1,5 @@
 import React from "react";
+import { contactLine } from "../shared";
 import { Document, Page, Text, View, StyleSheet, Font } from "@react-pdf/renderer";
 
 // Define proper formData interface
@@ -149,14 +150,14 @@ const PublicPolicyResume = ({ formData }: TemplateProps) => {
         {/* Header */}
         <View style={styles.resumeHeader}>
           <Text style={styles.resumeName}>
-            {formData.firstName || "JOHN"} {formData.middleName ? formData.middleName + " " : ""}
-            {formData.lastName || "STUDENT"}
+            {formData.firstName || ""} {formData.middleName ? formData.middleName + " " : ""}
+            {formData.lastName || ""}
           </Text>
           <Text style={styles.resumeContactLinear}>
-            {formData.address || "New York, NY 01234"}
+            {formData.address || ""}
           </Text>
           <Text style={styles.resumeContactLinear}>
-            {formData.email || "jstudent@emory.edu"} {formData.phone || "(212) 123-4567"}
+            {contactLine(formData, ["email", "phone"])}
           </Text>
         </View>
 
@@ -168,13 +169,12 @@ const PublicPolicyResume = ({ formData }: TemplateProps) => {
               <View key={idx}>
                 <View style={styles.resumeFlex}>
                   <View>
-                    <Text><Text style={styles.title}>{edu.institution || ""}</Text>{edu.institution ? ", " : ""}{edu.institution?.includes("Atlanta") ? "" : "Atlanta, GA"}</Text>
+                    <Text><Text style={styles.title}>{edu.institution || ""}</Text></Text>
                     <Text>{edu.degree || ""}</Text>
-                    {idx === 0 && <Text>GPA: 3.8/4.0</Text>}
-                    {idx === 0 && <Text style={{fontWeight:"bold"}}><Text style={styles.resumeRole}>Honors and Awards</Text></Text>}
+                    {idx === 0 && Array.isArray(formData.honorsList) && formData.honorsList.some(h => h.honor?.trim()) && <Text style={{fontWeight:"bold"}}><Text style={styles.resumeRole}>Honors and Awards</Text></Text>}
                   </View>
                   <View style={styles.resumeDateLocation}>
-                    <Text>{edu.years || "May 2021"}</Text>
+                    <Text>{edu.years || ""}</Text>
                   </View>
                 </View>
                 {idx === 0 && (
@@ -183,37 +183,12 @@ const PublicPolicyResume = ({ formData }: TemplateProps) => {
                       formData.honorsList.map((honor, idx) => (
                         <Text key={idx} style={styles.bulletItem}>• {honor.honor}</Text>
                       ))
-                    ) : (
-                      <>
-                        <Text style={styles.bulletItem}>• Dean's List, 6 semesters</Text>
-                        <Text style={styles.bulletItem}>• Pi Sigma Alpha (Political Science Honor Society) – Inducted April 2019</Text>
-                        <Text style={styles.bulletItem}>• Selected to Political Science Honors Program; Thesis completed with Honors</Text>
-                        <Text style={styles.bulletItem}>• Thesis: <Text style={styles.resumeRole}>Political Engagement in High-Risk Urban Young Adults: Encouraging Activism, Discouraging Apathy</Text></Text>
-                      </>
-                    )}
+                    ) : null}
                   </>
                 )}
               </View>
             ))
-          ) : (
-            <View>
-              <View style={styles.resumeFlex}>
-                <View>
-                  <Text><Text style={styles.title}>Emory University,</Text> Atlanta, GA</Text>
-                  <Text>Bachelor of Arts in Political Science</Text>
-                  <Text>GPA: 3.8/4.0</Text>
-                  <Text style={{fontWeight:"bold"}}><Text style={styles.resumeRole}>Honors and Awards</Text></Text>
-                </View>
-                <View style={styles.resumeDateLocation}>
-                  <Text>May 2021</Text>
-                </View>
-              </View>
-              <Text style={styles.bulletItem}>• Dean's List, 6 semesters</Text>
-              <Text style={styles.bulletItem}>• Pi Sigma Alpha (Political Science Honor Society) – Inducted April 2019</Text>
-              <Text style={styles.bulletItem}>• Selected to Political Science Honors Program; Thesis completed with Honors</Text>
-              <Text style={styles.bulletItem}>• Thesis: <Text style={styles.resumeRole}>Political Engagement in High-Risk Urban Young Adults: Encouraging Activism, Discouraging Apathy</Text></Text>
-            </View>
-          )}
+          ) : null}
         </View>
 
         {/* Professional Experience */}
@@ -225,7 +200,7 @@ const PublicPolicyResume = ({ formData }: TemplateProps) => {
               <View key={idx}>
                 <View style={styles.resumeFlex}>
                   <View>
-                    <Text><Text style={styles.title}>{exp.company || ""}</Text>{exp.company?.includes("NY") ? "" : ", Syracuse, NY"}</Text>
+                    <Text><Text style={styles.title}>{exp.company || ""}</Text></Text>
                     <Text style={styles.resumeRole}>{exp.title || ""}</Text>
                   </View>
                   <View style={styles.resumeDateLocation}>
@@ -236,61 +211,10 @@ const PublicPolicyResume = ({ formData }: TemplateProps) => {
                   exp.bullets.map((bullet, idx) => (
                     <Text key={idx} style={styles.bulletItem}>• {bullet}</Text>
                   ))
-                ) : (
-                  <>
-                    <Text style={styles.bulletItem}>• Utilized strong communication and presentation skills while canvassing neighborhoods</Text>
-                    <Text style={styles.bulletItem}>• Designed campaign marketing materials including posters, flyers, and banners</Text>
-                    <Text style={styles.bulletItem}>• Drafted press releases and brief articles for media</Text>
-                    <Text style={styles.bulletItem}>• Gained knowledge of inner workings of politics and campaigns</Text>
-                  </>
-                )}
+                ) : null}
               </View>
             ))
-          ) : (
-            <>
-              <View>
-                <View style={styles.resumeFlex}>
-                  <View>
-                    <Text><Text style={styles.title}>Lisa Melguine for Mayor,</Text> Syracuse, NY</Text>
-                    <Text style={styles.resumeRole}>Campaign Intern (remote position)</Text>
-                  </View>
-                  <View style={styles.resumeDateLocation}>
-                    <Text>Jun 2020 - Nov 2020</Text>
-                  </View>
-                </View>
-                <Text style={styles.bulletItem}>• Utilized strong communication and presentation skills while canvassing neighborhoods to introduce candidate's platform to residents and other community establishments</Text>
-                <Text style={styles.bulletItem}>• Designed campaign marketing materials including posters, flyers, and banners</Text>
-                <Text style={styles.bulletItem}>• Drafted press releases and brief articles for media</Text>
-                <Text style={styles.bulletItem}>• Gained knowledge of inner workings of politics and campaigns, including coalition building, persuasive presentations, and constituent responsiveness</Text>
-              </View>
-
-              <View style={styles.resumeFlex}>
-                <View>
-                <Text><Text style={styles.title}>The Governor's Intern Program,</Text> Albany, NY</Text>
-                  <Text style={styles.resumeRole}>Policy Intern</Text>
-                </View>
-                <View style={styles.resumeDateLocation}>
-                  <Text>Jun 2019 - Aug 2019</Text>
-                </View>
-              </View>
-              <Text style={styles.bulletItem}>• Conducted researched and prepared reports on education and health care policy reform, including estimating costs and other logistical processes</Text>
-              <Text style={styles.bulletItem}>• Conducted presentations to the Governor and staff on research findings. Received Governor's Research Award, top award for best presentation and research results</Text>
-              <Text style={styles.bulletItem}>• Learned the process of creating policy initiatives and transforming them into law</Text>
-
-              <View style={styles.resumeFlex}>
-                <View>
-                <Text><Text style={styles.title}>Office of the Honorable J.C. Bradford,</Text> Brooklyn, NY</Text>
-                  <Text style={styles.resumeRole}>Intern</Text>
-                </View>
-                <View style={styles.resumeDateLocation}>
-                  <Text>May 2018 - Aug 2018</Text>
-                </View>
-              </View>
-              <Text style={styles.bulletItem}>• Researched policy initiatives and made recommendations to the Congressman for appropriate actions to take on various bills before the House of Representatives</Text>
-              <Text style={styles.bulletItem}>• Drafted a weekly email newsletter sent to district constituents on the Congressman's activities and voting record. Increased constituent engagement with newsletter by 35% over previous newsletter format</Text>
-              <Text style={styles.bulletItem}>• Responded to constituent concerns by writing response letters. Received favorable constituent praise for thoroughness of replies multiple times</Text>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Leadership & Service */}
@@ -314,60 +238,10 @@ const PublicPolicyResume = ({ formData }: TemplateProps) => {
                   ))
                 ) : lead.description ? (
                   <Text style={styles.bulletItem}>• {lead.description}</Text>
-                ) : (
-                  <Text style={styles.bulletItem}>• Contributed to organization's mission and objectives through active participation and leadership</Text>
-                )}
+                ) : null}
               </View>
             ))
-          ) : (
-            <>
-              <View style={styles.resumeFlex}>
-                <View>
-                <Text><Text style={styles.title}>Students for a Better Tomorrow,</Text> <Text style={styles.resumeRole}>Founder & President</Text></Text>
-                </View>
-                <View style={styles.resumeDateLocation}>
-                  <Text>Aug 2019 - Present</Text>
-                </View>
-              </View>
-              <Text style={styles.bulletItem}>• Chartered a student group for Latinx students to become better educated on understanding policy initiatives and how they impact their specific communities</Text>
-
-              <View style={styles.resumeFlex}>
-                <View>
-                <Text><Text style={styles.title}>Beta Theta Pi Fraternity,</Text> <Text style={styles.resumeRole}>Vice President</Text></Text>
-                </View>
-                <View style={styles.resumeDateLocation}>
-                  <Text>Feb 2019 - May 2020</Text>
-                </View>
-              </View>
-
-              <View style={styles.resumeFlex}>
-                <View>
-                <Text><Text style={styles.title}>Emory University Intra-Mural Tennis,</Text> <Text style={styles.resumeRole}>Champion</Text></Text>
-                </View>
-                <View style={styles.resumeDateLocation}>
-                  <Text>Aug 2019 - May 2020</Text>
-                </View>
-              </View>
-
-              <View style={styles.resumeFlex}>
-                <View>
-                <Text><Text style={styles.title}>Refugee Center of Atlanta,</Text> <Text style={styles.resumeRole}>Volunteer</Text></Text>
-                </View>
-                <View style={styles.resumeDateLocation}>
-                  <Text>Jan 2017 - May 2019</Text>
-                </View>
-              </View>
-
-              <View style={styles.resumeFlex}>
-                <View>
-                <Text><Text style={styles.title}>Children's Division of Brooklyn Community Hospital,</Text> <Text style={styles.resumeRole}>Volunteer</Text></Text>
-                </View>
-                <View style={styles.resumeDateLocation}>
-                  <Text>May 2018 - Aug 2018</Text>
-                </View>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Additional Skills */}
@@ -375,13 +249,7 @@ const PublicPolicyResume = ({ formData }: TemplateProps) => {
           <Text style={styles.sectionHeader}>ADDITIONAL SKILLS</Text>
           {formData.skillsInterests && formData.skillsInterests.trim() !== '' ? (
             <Text>{formData.skillsInterests}</Text>
-          ) : (
-            <>
-              <Text>Microsoft Word, Excel, Access, PowerPoint, & Adobe Dreamweaver</Text>
-              <Text>Fluent in Spanish; Conversational in Italian</Text>
-              <Text>Proficient in Facebook, Twitter, YouTube, Tumblr, WordPress</Text>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Custom Personal Fields Section if available */}

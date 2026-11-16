@@ -1,4 +1,5 @@
 import React from "react";
+import { contactLine } from "../shared";
 import { Document, Page, Text, View, StyleSheet, Font } from "@react-pdf/renderer";
 
 // Define proper formData interface
@@ -143,11 +144,11 @@ const SWEResume = ({ formData }: TemplateProps) => {
         {/* Header */}
         <View style={styles.header}>
           <Text style={dynamicStyles.name}>
-            {formData.firstName || "TAYLOR"} {formData.middleName ? formData.middleName + " " : ""}
-            {formData.lastName || "DEVELOPER"}
+            {formData.firstName || ""} {formData.middleName ? formData.middleName + " " : ""}
+            {formData.lastName || ""}
           </Text>
           <Text style={styles.contact}>
-            {formData.address || "123 Code Avenue, Atlanta, GA 30322"} | {formData.phone || "(404) 555-0123"} | {formData.email || "tdeveloper@gmail.com"} | github.com/tdeveloper
+            {contactLine(formData)}
           </Text>
         </View>
 
@@ -156,22 +157,7 @@ const SWEResume = ({ formData }: TemplateProps) => {
           <Text style={styles.sectionTitle}>TECHNICAL SKILLS</Text>
           {formData.skillsInterests && formData.skillsInterests.trim() !== '' ? (
             <Text>{formData.skillsInterests}</Text>
-          ) : (
-            <>
-              <View style={styles.skill}>
-                <Text><Text style={{ fontWeight: 'bold' }}>Languages:</Text> JavaScript, TypeScript, Python, Java, HTML, CSS, SQL</Text>
-              </View>
-              <View style={styles.skill}>
-                <Text><Text style={{ fontWeight: 'bold' }}>Frameworks/Libraries:</Text> React, Node.js, Express, Django, Spring Boot, Redux, jQuery</Text>
-              </View>
-              <View style={styles.skill}>
-                <Text><Text style={{ fontWeight: 'bold' }}>Tools/Platforms:</Text> Git, AWS (EC2, S3, Lambda), Docker, Jenkins, Jira, REST APIs, GraphQL</Text>
-              </View>
-              <View style={styles.skill}>
-                <Text><Text style={{ fontWeight: 'bold' }}>Databases:</Text> MongoDB, PostgreSQL, MySQL, Firebase</Text>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Education Section */}
@@ -187,17 +173,7 @@ const SWEResume = ({ formData }: TemplateProps) => {
                 <Text style={styles.role}>{edu.degree || ""}</Text>
               </View>
             ))
-          ) : (
-            <View style={styles.detailsContainer}>
-              <View style={styles.flexRow}>
-                <Text style={styles.company}>EMORY UNIVERSITY</Text>
-                <Text>Atlanta, GA • May 2023</Text>
-              </View>
-              <Text style={styles.role}>Bachelor of Science in Computer Science, Minor in Mathematics</Text>
-              <Text>GPA: 3.85/4.00 • Dean's List (All Semesters)</Text>
-              <Text>Relevant Coursework: Data Structures & Algorithms, Operating Systems, Database Systems, Computer Networks, Software Engineering, Machine Learning, Web Development</Text>
-            </View>
-          )}
+          ) : null}
         </View>
 
         {/* Experience Section */}
@@ -215,40 +191,10 @@ const SWEResume = ({ formData }: TemplateProps) => {
                   exp.bullets.map((bullet, bulletIdx) => (
                     <Text key={bulletIdx} style={styles.bullet}>• {bullet}</Text>
                   ))
-                ) : (
-                  <>
-                    <Text style={styles.bullet}>• Developed and maintained web applications using modern frameworks and technologies</Text>
-                    <Text style={styles.bullet}>• Collaborated with cross-functional teams to implement new features and optimize performance</Text>
-                    <Text style={styles.bullet}>• Participated in code reviews and ensured high-quality, well-tested code</Text>
-                  </>
-                )}
+                ) : null}
               </View>
             ))
-          ) : (
-            <>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.company}>AMAZON</Text>
-                  <Text>Seattle, WA • May - Aug 2022</Text>
-                </View>
-                <Text style={styles.role}>Software Engineering Intern</Text>
-                <Text style={styles.bullet}>• Developed a full-stack feature for internal tool using React, Node.js, and AWS, improving workflow efficiency by 25%</Text>
-                <Text style={styles.bullet}>• Implemented RESTful APIs that processed over 10,000 daily requests with 99.9% uptime</Text>
-                <Text style={styles.bullet}>• Created automated tests achieving 90% code coverage and reducing QA time by 15%</Text>
-                <Text style={styles.bullet}>• Collaborated with 5 team members using agile methodologies, completing all sprint tasks on schedule</Text>
-              </View>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.company}>TECH STARTUP</Text>
-                  <Text>Atlanta, GA • Jan - May 2022</Text>
-                </View>
-                <Text style={styles.role}>Frontend Developer (Part-time)</Text>
-                <Text style={styles.bullet}>• Built responsive web interfaces using React and Redux, improving user engagement by 30%</Text>
-                <Text style={styles.bullet}>• Optimized application performance, reducing load time by 40% through code splitting and lazy loading</Text>
-                <Text style={styles.bullet}>• Integrated third-party APIs for payment processing and user authentication</Text>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Projects Section */}
@@ -271,28 +217,7 @@ const SWEResume = ({ formData }: TemplateProps) => {
                 )}
               </View>
             ))
-          ) : (
-            <>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.company}>E-COMMERCE PLATFORM</Text>
-                  <Text>github.com/tdeveloper/ecommerce</Text>
-                </View>
-                <Text style={styles.bullet}>• Developed a full-stack e-commerce application with React, Node.js, Express, and MongoDB</Text>
-                <Text style={styles.bullet}>• Implemented features including user authentication, product search, shopping cart, and payment processing</Text>
-                <Text style={styles.bullet}>• Deployed application on AWS using Docker containers and CI/CD pipeline with GitHub Actions</Text>
-              </View>
-              <View style={styles.detailsContainer}>
-                <View style={styles.flexRow}>
-                  <Text style={styles.company}>MACHINE LEARNING IMAGE CLASSIFIER</Text>
-                  <Text>github.com/tdeveloper/image-ai</Text>
-                </View>
-                <Text style={styles.bullet}>• Built an image classification model using TensorFlow and Keras with 95% accuracy</Text>
-                <Text style={styles.bullet}>• Created a web interface with Flask to allow users to upload and classify images</Text>
-                <Text style={styles.bullet}>• Implemented data preprocessing pipeline to handle various image formats and sizes</Text>
-              </View>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Honors Section */}
@@ -302,14 +227,7 @@ const SWEResume = ({ formData }: TemplateProps) => {
             formData.honorsList.filter(h => h.honor && h.honor.trim() !== '').map((honor, idx) => (
               <Text key={idx} style={styles.bullet}>• {honor.honor}</Text>
             ))
-          ) : (
-            <>
-              <Text style={styles.bullet}>• 1st Place, Emory University Hackathon (2022) - Smart City Transportation App</Text>
-              <Text style={styles.bullet}>• President, Computer Science Student Association (2021-2023)</Text>
-              <Text style={styles.bullet}>• Open Source Contributor - 15+ merged pull requests to popular React libraries</Text>
-              <Text style={styles.bullet}>• Teaching Assistant for Data Structures & Algorithms course (2021-2022)</Text>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Custom Personal Fields Section if available */}

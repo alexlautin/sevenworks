@@ -1,4 +1,5 @@
 import React from "react";
+import { contactLine } from "./shared";
 import { TemplateProps } from "../../utils/types";
 import { Document, Page, Text, View, StyleSheet, Font } from "@react-pdf/renderer";
 
@@ -73,11 +74,11 @@ const BusinessResume = ({formData}: TemplateProps) => {
         {/* Header */}
         <View style={styles.header}>
           <Text style={dynamicStyles.headerText}>
-            {formData.firstName || "First"} {formData.middleName ? formData.middleName + " " : ""}{formData.lastName || "Last"}
+            {formData.firstName || ""} {formData.middleName ? formData.middleName + " " : ""}{formData.lastName || ""}
           </Text>
           <View style={dynamicStyles.contactContainer}>
-            <Text>{formData.address || "Address"}</Text>
-            <Text>{formData.phone || "Phone"} | {formData.email || "Email"}</Text>
+            <Text>{formData.address || ""}</Text>
+            <Text>{contactLine(formData, ["phone", "email"])}</Text>
           </View>
           <View style={styles.hr} />
         </View>
@@ -96,17 +97,7 @@ const BusinessResume = ({formData}: TemplateProps) => {
                 <Text>{edu.years}</Text>
               </View>
             ))
-          ) : (
-            <View style={styles.flexRow}>
-              <View>
-                <Text>Default University, City, ST</Text>
-                <Text style={styles.role}>Default Degree</Text>
-                <Text>Relevant Coursework: Placeholder</Text>
-                <Text>GPA: N/A</Text>
-              </View>
-              <Text>Default Date</Text>
-            </View>
-          )}
+          ) : null}
         </View>
 
         {/* Experience Section */}
@@ -126,18 +117,7 @@ const BusinessResume = ({formData}: TemplateProps) => {
                 {/* <Text style={styles.listItem}>• Placeholder description point.</Text> */}
               </View>
             ))
-          ) : (
-            <View style={{ marginBottom: 8 }}>
-              <View style={styles.flexRow}>
-                <View>
-                  <Text>Default Company - City, ST</Text>
-                  <Text style={styles.role}>Default Role</Text>
-                </View>
-                <Text>Default Dates</Text>
-              </View>
-              <Text style={styles.listItem}>• Default experience detail.</Text>
-            </View>
-          )}
+          ) : null}
         </View>
 
         {/* Leadership Section */}
@@ -156,18 +136,7 @@ const BusinessResume = ({formData}: TemplateProps) => {
                 <Text style={styles.listItem}>• {lead.description}</Text>
               </View>
             ))
-          ) : (
-            <View style={{ marginBottom: 8 }}>
-              <View style={styles.flexRow}>
-                <View>
-                  <Text>Default Organization</Text>
-                  <Text style={styles.role}>Default Role</Text>
-                </View>
-                <Text>Default Dates</Text>
-              </View>
-              <Text style={styles.listItem}>• Default leadership detail.</Text>
-            </View>
-          )}
+          ) : null}
         </View>
 
         {/* Honors Section */}
@@ -177,12 +146,7 @@ const BusinessResume = ({formData}: TemplateProps) => {
             formData.honorsList.filter(h => h.honor && h.honor.trim() !== '').map((honor, idx) => (
               <Text key={idx} style={styles.listItem}>• {honor.honor}</Text>
             ))
-          ) : (
-            <>
-              <Text style={styles.listItem}>• Default Honor 1</Text>
-              <Text style={styles.listItem}>• Default Honor 2</Text>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Skills Section */}
@@ -190,13 +154,7 @@ const BusinessResume = ({formData}: TemplateProps) => {
           <Text style={dynamicStyles.sectionHeader}>ADDITIONAL SKILLS AND INTERESTS</Text>
           {formData.skillsInterests && formData.skillsInterests.trim() !== '' ? (
             <Text>{formData.skillsInterests}</Text>
-          ) : (
-            <>
-              <Text><Text style={styles.role}>Languages:</Text> Default Language</Text>
-              <Text><Text style={styles.role}>Computing:</Text> Default Software</Text>
-              <Text><Text style={styles.role}>Interests:</Text> Default Interest</Text>
-            </>
-          )}
+          ) : null}
         </View>
 
         {/* Custom Personal Fields Section */}
