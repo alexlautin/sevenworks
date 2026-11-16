@@ -66,7 +66,7 @@ export default function Home() {
       </main>
 
       <footer className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 border-t border-line px-4 py-6 text-xs text-subtle sm:px-6">
-        <span>© SevenWorks · Built for CS 370 Fall 2025 at Emory University</span>
+        <span>© SevenWorks · Built for CS 370 in Fall 2025 at Emory University</span>
         <nav className="flex gap-5" aria-label="Legal">
           <Link href="/legal/privacy" className="hover:text-ink">Privacy</Link>
           <Link href="/legal/terms" className="hover:text-ink">Terms</Link>
