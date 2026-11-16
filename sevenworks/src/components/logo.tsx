@@ -1,12 +1,19 @@
 import Link from "next/link";
 
+// Text wordmark. `compact` uses a smaller size for tight headers on phones.
 export function Logo({ href = "/", className = "", compact = false }: { href?: string; className?: string; compact?: boolean }) {
   return (
-    <Link href={href} className={`group inline-flex items-center gap-2 ${className}`} aria-label="SevenWorks home">
-      <span className="grid h-8 w-8 place-items-center rounded-lg bg-primary font-display text-lg font-semibold text-on-primary transition group-hover:rotate-[-4deg]">
-        7
+    <Link
+      href={href}
+      aria-label="SevenWorks home"
+      className={`inline-flex items-baseline font-semibold tracking-[-0.04em] text-ink transition hover:opacity-80 ${
+        compact ? "text-lg sm:text-xl" : "text-xl"
+      } ${className}`}
+    >
+      sevenworks
+      <span className="ml-px text-accent-ink dark:text-accent" aria-hidden>
+        .
       </span>
-      <span className={`font-display text-xl font-semibold tracking-tight ${compact ? "hidden sm:inline" : ""}`}>SevenWorks</span>
     </Link>
   );
 }

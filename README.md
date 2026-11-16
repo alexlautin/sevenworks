@@ -69,6 +69,9 @@ For a portfolio deploy on Vercel, set the project's root directory to `sevenwork
 ## Deployment
 Deploy easily on [Vercel](https://vercel.com/) or your preferred platform. See [Next.js deployment docs](https://nextjs.org/docs/app/building-your-application/deploying).
 
+## History
+SevenWorks started as a team project for a class. Later, Alex Lautin fixed the templates, added demo mode, rebuilt the editor preview and redesigned the interface. The original class version is kept under the `class-project` tag.
+
 ## License
 MIT
 
