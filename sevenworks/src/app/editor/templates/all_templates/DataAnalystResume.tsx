@@ -115,9 +115,9 @@ const styles = StyleSheet.create({
 
 const DataAnalystResume = ({ formData }: TemplateProps) => {
   // Helper function to check if a data array has content
-  const hasContent = (arr: any[] | undefined, fields: string[]) => {
+  const hasContent = (arr: object[] | undefined, fields: string[]) => {
     return Array.isArray(arr) && arr.length > 0 && arr.some(item => 
-      fields.some(field => item[field] && String(item[field]).trim() !== '')
+      fields.some(field => (item as Record<string, unknown>)[field] && String((item as Record<string, unknown>)[field]).trim() !== '')
     );
   };
 
@@ -231,16 +231,7 @@ const DataAnalystResume = ({ formData }: TemplateProps) => {
             formData.honorsList.filter(h => h.honor && h.honor.trim() !== '').map((honor, idx) => (
               <Text key={idx} style={styles.bullet}>• {honor.honor}</Text>
             ))
-          ) : (
-            // Default honors entries
-            <>
-              <Text style={styles.bullet}>• Microsoft Certified: Azure Data Scientist Associate</Text>
-              <Text style={styles.bullet}>• Google Analytics Individual Qualification</Text>
-              <Text style={styles.bullet}>• Tableau Desktop Specialist</Text>
-              <Text style={styles.bullet}>• First Place, Emory Data Analytics Hackathon (2022)</Text>
-              <Text style={styles.bullet}>• Dean's List (All Semesters)</Text>
-            </>
-          )}
+          ) : null}
         </View>
 
 
