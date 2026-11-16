@@ -4,33 +4,17 @@
 
 /* Colour tokens as RGB triplets so Tailwind opacity modifiers work (bg-surface/80). */
 :root {
-  --bg: 251 248 247;
+  --bg: 250 250 250;
   --surface: 255 255 255;
-  --surface-muted: 244 238 236;
-  --border: 233 223 220;
-  --text: 31 32 51;
-  --text-muted: 107 104 118;
+  --surface-muted: 244 244 245;
+  --border: 228 228 231;
+  --text: 24 24 27;
+  --text-muted: 113 113 122;
   --accent: 230 189 185; /* brand #E6BDB9 */
-  --accent-ink: 150 72 64;
-  --primary: 43 45 66; /* brand navy #2B2D42 */
+  --accent-ink: 176 92 84;
+  --primary: 24 24 27;
   --on-primary: 255 255 255;
   color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: 18 19 31;
-    --surface: 27 28 45;
-    --surface-muted: 36 38 58;
-    --border: 50 52 76;
-    --text: 241 236 235;
-    --text-muted: 166 162 178;
-    --accent: 230 189 185;
-    --accent-ink: 240 201 197;
-    --primary: 230 189 185;
-    --on-primary: 31 32 51;
-    color-scheme: dark;
-  }
 }
 
 html,
@@ -44,31 +28,31 @@ body {
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition
-      focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent
+    @apply inline-flex items-center justify-center gap-2 h-9 rounded-lg px-3.5 text-sm font-medium transition
+      focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink/30
       disabled:cursor-not-allowed disabled:opacity-50;
   }
   .btn-primary {
-    @apply bg-primary text-on-primary hover:opacity-90;
+    @apply bg-primary text-on-primary shadow-sm hover:bg-primary/85;
   }
   .btn-secondary {
-    @apply border border-line bg-surface text-ink hover:bg-muted;
+    @apply border border-line bg-surface text-ink shadow-sm hover:bg-muted;
   }
   .btn-ghost {
     @apply text-subtle hover:bg-muted hover:text-ink;
   }
   .card {
-    @apply rounded-2xl border border-line bg-surface shadow-soft;
+    @apply rounded-xl border border-line bg-surface shadow-sm;
   }
   .field-label {
-    @apply mb-1 block text-xs font-medium text-subtle;
+    @apply mb-1.5 block text-[13px] font-medium text-ink/80;
   }
   .field {
-    @apply w-full rounded-lg border border-line bg-bg px-3 py-2 text-sm text-ink placeholder:text-subtle/60
-      focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/40;
+    @apply w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink shadow-sm placeholder:text-subtle/70
+      transition focus:border-ink/40 focus:outline-none focus:ring-4 focus:ring-ink/5;
   }
   .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.14em] text-accent-ink;
+    @apply text-xs font-medium uppercase tracking-[0.12em] text-subtle;
   }
 }
 

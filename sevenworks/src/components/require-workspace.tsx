@@ -24,7 +24,7 @@ export function RequireWorkspace({ children }: { children: ReactNode }) {
   if (!mounted || (!demo && accountsEnabled && (loading || !user))) {
     return (
       <div className="grid min-h-[60vh] place-items-center">
-        <span className="h-8 w-8 animate-spin rounded-full border-2 border-line border-t-accent-ink" aria-label="Loading" />
+        <span className="h-8 w-8 animate-spin rounded-full border-2 border-line border-t-ink" aria-label="Loading" />
       </div>
     );
   }
@@ -38,7 +38,7 @@ export function DemoRequired({ title = "Accounts are turned off here" }: { title
     <div className="mx-auto grid min-h-[70vh] max-w-md place-items-center px-4 text-center">
       <div className="card w-full p-8">
         <p className="eyebrow">Portfolio demo</p>
-        <h1 className="mt-3 font-display text-2xl font-semibold">{title}</h1>
+        <h1 className="mt-3 text-xl font-semibold tracking-tight">{title}</h1>
         <p className="mt-3 text-sm text-subtle">
           This copy of SevenWorks runs as a public demo, so sign-in and saved accounts are off. The demo has the full
           editor, every template and PDF download, with a sample resume you can change.

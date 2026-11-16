@@ -11,7 +11,7 @@ export function Logo({ href = "/", className = "", compact = false }: { href?: s
       } ${className}`}
     >
       sevenworks
-      <span className="ml-px text-accent-ink dark:text-accent" aria-hidden>
+      <span className="ml-px text-accent-ink" aria-hidden>
         .
       </span>
     </Link>

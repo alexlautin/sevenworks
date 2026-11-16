@@ -88,7 +88,7 @@ export function PdfPreview({ templateId, data, zoom }: Props) {
       {state === "loading" && (
         <div className="absolute inset-0 grid place-items-center">
           <div className="flex flex-col items-center gap-3 text-sm text-subtle">
-            <span className="h-8 w-8 animate-spin rounded-full border-2 border-line border-t-accent-ink" />
+            <span className="h-8 w-8 animate-spin rounded-full border-2 border-line border-t-ink" />
             Rendering your resume…
           </div>
         </div>

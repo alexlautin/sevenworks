@@ -3,10 +3,9 @@
 import { Suspense, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { LuArrowLeft, LuCheck, LuCloudOff, LuDownload, LuLoaderCircle, LuMinus, LuPlus } from "react-icons/lu";
+import { LuArrowLeft, LuArrowRight, LuCheck, LuChevronDown, LuCloudOff, LuDownload, LuLoaderCircle, LuMinus, LuPlus } from "react-icons/lu";
 import { RequireWorkspace } from "@/components/require-workspace";
-import { TEMPLATES } from "@/lib/templates";
-import { resolveLegacyId } from "@/lib/templates";
+import { resolveLegacyId, TEMPLATES } from "@/lib/templates";
 import { SECTIONS, SectionForm, type SectionId } from "./sections";
 import { PdfPreview } from "./pdf-preview";
 import { downloadPdf } from "./pdf";
@@ -60,7 +59,7 @@ function Editor() {
   if (error) {
     return (
       <div className="mx-auto max-w-md px-4 py-24 text-center">
-        <h1 className="font-display text-2xl font-semibold">Couldn&apos;t open this resume</h1>
+        <h1 className="text-xl font-semibold tracking-tight">Couldn&apos;t open this resume</h1>
         <p className="mt-2 text-sm text-subtle">{error}</p>
         <Link href="/dashboard" className="btn btn-primary mt-6">
           Back to my resumes
@@ -72,7 +71,7 @@ function Editor() {
   if (!resume) {
     return (
       <div className="grid min-h-[60vh] place-items-center">
-        <span className="h-8 w-8 animate-spin rounded-full border-2 border-line border-t-accent-ink" aria-label="Loading" />
+        <span className="h-8 w-8 animate-spin rounded-full border-2 border-line border-t-ink" aria-label="Loading" />
       </div>
     );
   }
@@ -89,16 +88,37 @@ function Editor() {
     }
   };
 
+  const sectionIndex = SECTIONS.findIndex((s) => s.id === section);
+
+  const styleControls = (
+    <>
+      <Select label="Template" value={templateId} onChange={setTemplate} options={TEMPLATES.map((t) => ({ value: t.id, label: t.name }))} />
+      <Select
+        label="Font"
+        value={data.font ?? "Arial"}
+        onChange={(v) => updateData((d) => ({ ...d, font: v }))}
+        options={FONTS}
+      />
+      <Select
+        label="Size"
+        value={String(Number(data.fontSize) || 10)}
+        onChange={(v) => updateData((d) => ({ ...d, fontSize: Number(v) }))}
+        options={SIZES.map((s) => ({ value: String(s.value), label: s.label }))}
+      />
+    </>
+  );
+
   return (
-    <div className="flex h-[calc(100dvh-var(--banner-h,0px))] flex-col">
+    <div className="flex h-[calc(100dvh-var(--banner-h,0px))] flex-col bg-surface">
       {/* Top bar */}
-      <header className="flex shrink-0 items-center gap-2 border-b border-line bg-surface px-3 py-2 sm:gap-3 sm:px-4">
-        <Link href="/dashboard" className="btn btn-ghost px-2" aria-label="Back to my resumes">
-          <LuArrowLeft className="text-lg" />
+      <header className="flex h-14 shrink-0 items-center gap-2 border-b border-line px-2 sm:px-3">
+        <Link href="/dashboard" className="btn btn-ghost w-9 px-0" aria-label="Back to my resumes">
+          <LuArrowLeft className="text-base" />
         </Link>
+        <span className="h-5 w-px bg-line" aria-hidden />
         <input
           aria-label="Resume name"
-          className="min-w-0 flex-1 truncate rounded-md bg-transparent px-2 py-1 font-display text-base font-semibold hover:bg-muted focus:bg-muted focus:outline-none sm:max-w-xs sm:text-lg"
+          className="min-w-0 max-w-xs flex-1 truncate rounded-md bg-transparent px-2 py-1 text-sm font-medium hover:bg-muted focus:bg-muted focus:outline-none"
           value={resume.name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -111,68 +131,17 @@ function Editor() {
         </button>
       </header>
 
-      {/* Style toolbar */}
-      <div className="no-scrollbar flex shrink-0 items-center gap-2 overflow-x-auto border-b border-line bg-surface/70 px-3 py-2 text-sm sm:px-4">
-        <label className="flex shrink-0 items-center gap-2">
-          <span className="text-xs text-subtle">Template</span>
-          <select className="field w-auto py-1.5" value={templateId} onChange={(e) => setTemplate(e.target.value)}>
-            {TEMPLATES.map((t) => (
-              <option key={t.id} value={t.id}>
-                {t.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className="flex shrink-0 items-center gap-2">
-          <span className="text-xs text-subtle">Font</span>
-          <select
-            className="field w-auto py-1.5"
-            value={data.font ?? "Arial"}
-            onChange={(e) => updateData((d) => ({ ...d, font: e.target.value }))}
-          >
-            {FONTS.map((f) => (
-              <option key={f.value} value={f.value}>
-                {f.label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className="flex shrink-0 items-center gap-2">
-          <span className="text-xs text-subtle">Size</span>
-          <select
-            className="field w-auto py-1.5"
-            value={Number(data.fontSize) || 10}
-            onChange={(e) => updateData((d) => ({ ...d, fontSize: Number(e.target.value) }))}
-          >
-            {SIZES.map((s) => (
-              <option key={s.value} value={s.value}>
-                {s.label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <div className="ml-auto hidden shrink-0 items-center gap-1 lg:flex">
-          <button className="btn btn-ghost px-2" aria-label="Zoom out" onClick={() => setZoom((z) => Math.max(0.5, +(z - 0.1).toFixed(1)))}>
-            <LuMinus />
-          </button>
-          <button className="w-14 text-center text-xs tabular-nums text-subtle hover:text-ink" onClick={() => setZoom(1)} title="Fit width">
-            {Math.round(zoom * 100)}%
-          </button>
-          <button className="btn btn-ghost px-2" aria-label="Zoom in" onClick={() => setZoom((z) => Math.min(2, +(z + 0.1).toFixed(1)))}>
-            <LuPlus />
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile edit / preview switch */}
-      <div className="flex shrink-0 gap-1 border-b border-line bg-surface p-1.5 lg:hidden" role="tablist">
+      {/* Phone: edit / preview switch */}
+      <div className="flex shrink-0 border-b border-line lg:hidden" role="tablist">
         {(["edit", "preview"] as const).map((v) => (
           <button
             key={v}
             role="tab"
             aria-selected={mobileView === v}
             onClick={() => setMobileView(v)}
-            className={`flex-1 rounded-full py-1.5 text-sm font-medium capitalize transition ${mobileView === v ? "bg-primary text-on-primary" : "text-subtle"}`}
+            className={`flex-1 border-b-2 py-2.5 text-sm font-medium capitalize transition ${
+              mobileView === v ? "border-ink text-ink" : "border-transparent text-subtle"
+            }`}
           >
             {v}
           </button>
@@ -180,53 +149,101 @@ function Editor() {
       </div>
 
       <div className="flex min-h-0 flex-1">
-        {/* Section nav + form */}
-        <div className={`min-h-0 w-full flex-col border-line bg-bg lg:flex lg:w-[440px] lg:shrink-0 lg:border-r xl:w-[500px] ${mobileView === "edit" ? "flex" : "hidden"}`}>
-          <nav className="no-scrollbar flex shrink-0 gap-1 overflow-x-auto border-b border-line px-3 py-2" aria-label="Resume sections">
+        {/* Form */}
+        <div
+          className={`min-h-0 w-full flex-col border-line lg:flex lg:w-[460px] lg:shrink-0 lg:border-r xl:w-[520px] ${
+            mobileView === "edit" ? "flex" : "hidden"
+          }`}
+        >
+          <nav className="no-scrollbar flex shrink-0 gap-5 overflow-x-auto border-b border-line px-5" aria-label="Resume sections">
             {SECTIONS.map((s) => (
               <button
                 key={s.id}
                 onClick={() => setSection(s.id)}
                 aria-current={section === s.id}
-                className={`shrink-0 rounded-full px-3 py-1.5 text-sm transition ${
-                  section === s.id ? "bg-accent/40 font-semibold text-ink" : "text-subtle hover:bg-muted hover:text-ink"
+                className={`-mb-px shrink-0 whitespace-nowrap border-b-2 py-3 text-[13px] font-medium transition ${
+                  section === s.id ? "border-ink text-ink" : "border-transparent text-subtle hover:text-ink"
                 }`}
               >
                 {s.label}
               </button>
             ))}
           </nav>
-          <div className="min-h-0 flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+          <div className="min-h-0 flex-1 overflow-y-auto px-5 py-6 sm:px-6">
             <SectionForm section={section} data={data} update={updateData} />
-            <div className="mt-8 flex justify-between border-t border-line pt-4">
-              {(() => {
-                const i = SECTIONS.findIndex((s) => s.id === section);
-                return (
-                  <>
-                    <button className="btn btn-ghost" disabled={i === 0} onClick={() => setSection(SECTIONS[i - 1].id)}>
-                      ← {SECTIONS[i - 1]?.label ?? "Back"}
-                    </button>
-                    {i < SECTIONS.length - 1 ? (
-                      <button className="btn btn-secondary" onClick={() => setSection(SECTIONS[i + 1].id)}>
-                        {SECTIONS[i + 1].label} →
-                      </button>
-                    ) : (
-                      <button className="btn btn-primary" onClick={onDownload}>
-                        Download PDF
-                      </button>
-                    )}
-                  </>
-                );
-              })()}
+            <div className="mt-10 flex items-center justify-between border-t border-line pt-4">
+              <button className="btn btn-ghost" disabled={sectionIndex === 0} onClick={() => setSection(SECTIONS[sectionIndex - 1].id)}>
+                <LuArrowLeft /> Back
+              </button>
+              {sectionIndex < SECTIONS.length - 1 ? (
+                <button className="btn btn-secondary" onClick={() => setSection(SECTIONS[sectionIndex + 1].id)}>
+                  Next: {SECTIONS[sectionIndex + 1].label}
+                  <LuArrowRight />
+                </button>
+              ) : (
+                <button className="btn btn-primary" onClick={onDownload}>
+                  <LuDownload /> Download PDF
+                </button>
+              )}
             </div>
           </div>
         </div>
 
         {/* Preview */}
-        <section aria-label="Live preview" className={`min-h-0 flex-1 bg-muted lg:block ${mobileView === "preview" ? "block" : "hidden"}`}>
-          <PdfPreview templateId={templateId} data={data} zoom={zoom} />
+        <section
+          aria-label="Live preview"
+          className={`min-h-0 min-w-0 flex-1 flex-col bg-muted lg:flex ${mobileView === "preview" ? "flex" : "hidden"}`}
+        >
+          <div className="no-scrollbar flex shrink-0 items-center gap-2 overflow-x-auto border-b border-line bg-surface px-3 py-2">
+            {styleControls}
+            <div className="ml-auto hidden shrink-0 items-center rounded-lg border border-line shadow-sm lg:flex">
+              <button className="grid h-8 w-8 place-items-center text-subtle hover:text-ink" aria-label="Zoom out" onClick={() => setZoom((z) => Math.max(0.5, +(z - 0.1).toFixed(1)))}>
+                <LuMinus />
+              </button>
+              <button className="h-8 w-12 border-x border-line text-xs tabular-nums text-subtle hover:text-ink" onClick={() => setZoom(1)} title="Fit to width">
+                {Math.round(zoom * 100)}%
+              </button>
+              <button className="grid h-8 w-8 place-items-center text-subtle hover:text-ink" aria-label="Zoom in" onClick={() => setZoom((z) => Math.min(2, +(z + 0.1).toFixed(1)))}>
+                <LuPlus />
+              </button>
+            </div>
+          </div>
+          <div className="min-h-0 flex-1">
+            <PdfPreview templateId={templateId} data={data} zoom={zoom} />
+          </div>
         </section>
       </div>
     </div>
+  );
+}
+
+function Select({
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: { value: string; label: string }[];
+}) {
+  return (
+    <label className="relative flex h-8 shrink-0 items-center rounded-lg border border-line bg-surface pl-2.5 text-[13px] shadow-sm hover:bg-muted">
+      <span className="hidden text-subtle 2xl:inline">{label}</span>
+      <select
+        aria-label={label}
+        className="h-full cursor-pointer appearance-none bg-transparent pr-7 font-medium text-ink focus:outline-none 2xl:pl-1.5"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      >
+        {options.map((o) => (
+          <option key={o.value} value={o.value}>
+            {o.label}
+          </option>
+        ))}
+      </select>
+      <LuChevronDown className="pointer-events-none absolute right-2 text-subtle" aria-hidden />
+    </label>
   );
 }

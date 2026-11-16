@@ -69,7 +69,7 @@ function AccountForm({ mode }: { mode: Mode }) {
     <main className="mx-auto flex min-h-[calc(100dvh-var(--banner-h,0px))] max-w-sm flex-col justify-center px-4 py-12">
       <Logo className="self-center" />
       <div className="card mt-8 p-6 sm:p-8">
-        <h1 className="font-display text-2xl font-semibold">{mode === "login" ? "Welcome back" : "Create your account"}</h1>
+        <h1 className="text-xl font-semibold tracking-tight">{mode === "login" ? "Welcome back" : "Create your account"}</h1>
         <p className="mt-1 text-sm text-subtle">
           {mode === "login" ? "Sign in to keep working on your resumes." : "Save resumes and pick up where you left off."}
         </p>

@@ -16,7 +16,7 @@ export default function PrivacyPolicy() {
       </button>
 
       <div className="card w-full max-w-2xl p-8">
-        <h1 className="text-3xl font-extrabold font-display text-ink mb-4">Privacy Policy</h1>
+        <h1 className="text-2xl font-semibold tracking-tight text-ink mb-4">Privacy Policy</h1>
         <p className="text-subtle mb-4">
           At SevenWorks, we take your privacy seriously.
         </p>

@@ -8,7 +8,7 @@ export const SECTIONS = [
   { id: "personal", label: "Personal" },
   { id: "education", label: "Education" },
   { id: "experience", label: "Experience" },
-  { id: "leadership", label: "Leadership & projects" },
+  { id: "leadership", label: "Leadership" },
   { id: "honors", label: "Honors" },
   { id: "skills", label: "Skills" },
 ] as const;
@@ -45,9 +45,9 @@ function Field({
 
 function SectionHeader({ title, hint }: { title: string; hint: string }) {
   return (
-    <header className="mb-5">
-      <h2 className="font-display text-xl font-semibold">{title}</h2>
-      <p className="mt-1 text-sm text-subtle">{hint}</p>
+    <header className="mb-6">
+      <h2 className="text-lg font-semibold tracking-tight">{title}</h2>
+      <p className="mt-0.5 text-sm text-subtle">{hint}</p>
     </header>
   );
 }
@@ -57,7 +57,7 @@ function AddButton({ onClick, children }: { onClick: () => void; children: React
     <button
       type="button"
       onClick={onClick}
-      className="flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-line py-3 text-sm font-medium text-subtle transition hover:border-accent hover:bg-accent/10 hover:text-ink"
+      className="flex w-full items-center justify-center gap-2 rounded-lg border border-dashed border-line py-2.5 text-sm font-medium text-subtle transition hover:border-ink/30 hover:bg-muted hover:text-ink"
     >
       <LuPlus aria-hidden /> {children}
     </button>
@@ -88,13 +88,13 @@ function EntryList<T>({
   return (
     <div className="space-y-4">
       {items.map((item, i) => (
-        <div key={i} className="rounded-xl border border-line bg-surface p-4">
+        <div key={i} className="rounded-xl border border-line bg-surface p-4 shadow-sm">
           <div className="mb-3 flex items-center gap-1">
             <p className="min-w-0 flex-1 truncate text-sm font-semibold">{title(item, i)}</p>
-            <button type="button" className="btn-ghost rounded-md p-1.5" aria-label="Move up" disabled={i === 0} onClick={() => move(i, -1)}>
+            <button type="button" className="rounded-md p-1.5 text-subtle transition hover:bg-muted hover:text-ink disabled:opacity-30" aria-label="Move up" disabled={i === 0} onClick={() => move(i, -1)}>
               <LuArrowUp />
             </button>
-            <button type="button" className="btn-ghost rounded-md p-1.5" aria-label="Move down" disabled={i === items.length - 1} onClick={() => move(i, 1)}>
+            <button type="button" className="rounded-md p-1.5 text-subtle transition hover:bg-muted hover:text-ink disabled:opacity-30" aria-label="Move down" disabled={i === items.length - 1} onClick={() => move(i, 1)}>
               <LuArrowDown />
             </button>
             <button
@@ -122,11 +122,9 @@ function Bullets({ bullets, onChange }: { bullets: string[] | undefined; onChang
       <div className="space-y-2">
         {list.map((b, i) => (
           <div key={i} className="flex items-start gap-2">
-            <span className="mt-2 text-subtle" aria-hidden>
-              •
-            </span>
+            <span className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-subtle/50" aria-hidden />
             <textarea
-              className="field min-h-[2.5rem] resize-y [field-sizing:content]"
+              className="field min-h-[2.5rem] resize-none [field-sizing:content]"
               rows={2}
               value={b}
               placeholder="Start with a verb and a result, e.g. Grew sign-ups 30% by…"
@@ -143,8 +141,8 @@ function Bullets({ bullets, onChange }: { bullets: string[] | undefined; onChang
           </div>
         ))}
       </div>
-      <button type="button" className="mt-2 text-sm font-medium text-accent-ink hover:underline" onClick={() => onChange([...list, ""])}>
-        + Add bullet
+      <button type="button" className="mt-2 inline-flex items-center gap-1 text-[13px] font-medium text-subtle hover:text-ink" onClick={() => onChange([...list, ""])}>
+        <LuPlus aria-hidden /> Add bullet
       </button>
     </div>
   );
@@ -164,7 +162,7 @@ function Personal({ data, update }: SectionProps) {
         <Field label="Email" type="email" value={data.email} onChange={set("email")} className="sm:col-span-2" />
         <Field label="Location" value={data.address} onChange={set("address")} placeholder="City, State" className="sm:col-span-2" />
       </div>
-      <h3 className="mb-3 mt-8 text-sm font-semibold">Extra links and details</h3>
+      <h3 className="mb-3 mt-8 text-sm font-semibold tracking-tight">Extra links and details</h3>
       <EntryList
         items={custom}
         onChange={(items) => update((d) => ({ ...d, customPersonal: items }))}
@@ -277,7 +275,7 @@ function Skills({ data, update }: SectionProps) {
       <label className="block">
         <span className="field-label">Skills and interests</span>
         <textarea
-          className="field min-h-[10rem] resize-y [field-sizing:content]"
+          className="field min-h-[10rem] resize-none [field-sizing:content]"
           value={data.skillsInterests ?? ""}
           onChange={(e) => update((d) => ({ ...d, skillsInterests: e.target.value }))}
         />

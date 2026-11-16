@@ -4,7 +4,7 @@ const token = (name: string) => `rgb(var(--${name}) / <alpha-value>)`;
 
 export default {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
-  darkMode: "media",
+  darkMode: "class", // light only; no dark class is ever set
   theme: {
     extend: {
       colors: {
@@ -24,7 +24,7 @@ export default {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-fraunces)", "Georgia", "serif"],
+        display: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
       boxShadow: {
         page: "0 1px 2px rgb(16 17 30 / 0.06), 0 12px 32px -8px rgb(16 17 30 / 0.18)",

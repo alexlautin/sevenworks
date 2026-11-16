@@ -66,7 +66,7 @@ function Dashboard() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="eyebrow">Workspace</p>
-          <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight sm:text-4xl">My resumes</h1>
+          <h1 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">My resumes</h1>
         </div>
         <div className="flex gap-2">
           <Link href="/templates" className="btn btn-secondary">

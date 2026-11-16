@@ -31,7 +31,7 @@ function Gallery() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
       <p className="eyebrow">{TEMPLATES.length} templates</p>
-      <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight sm:text-4xl">Pick a starting point</h1>
+      <h1 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">Pick a starting point</h1>
       <p className="mt-2 max-w-xl text-subtle">
         Each one is tuned for a field. You can switch templates any time in the editor without losing what you wrote.
       </p>

@@ -16,7 +16,7 @@ export default function TermsOfService() {
       </button>
 
       <div className="card w-full max-w-2xl p-8">
-        <h1 className="text-3xl font-extrabold font-display text-ink mb-4">Terms of Service</h1>
+        <h1 className="text-2xl font-semibold tracking-tight text-ink mb-4">Terms of Service</h1>
         <p className="text-subtle mb-4">
           Welcome to SevenWorks. By using our app, you agree to the following terms.
         </p>

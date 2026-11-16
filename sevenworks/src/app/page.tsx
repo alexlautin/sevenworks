@@ -34,7 +34,7 @@ export default function Home() {
             Pick a template, fill in your story, and watch the PDF update as you type.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link href="/demo" className="btn btn-primary group px-6 py-3 text-base">
+            <Link href="/demo" className="btn btn-primary group h-11 px-5 text-[15px]">
               Try the demo
               <LuArrowRight className="transition group-hover:translate-x-0.5" />
             </Link>
