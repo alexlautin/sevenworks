@@ -26,14 +26,14 @@ export default function Home() {
       </header>
 
       <main className="flex-1">
-        <section className="mx-auto max-w-3xl px-4 pb-16 pt-20 text-center sm:px-6 sm:pt-28">
+        <section className="mx-auto max-w-3xl px-4 pb-14 pt-10 text-center sm:px-6 sm:pt-14">
           <h1 className="text-balance text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.035em] sm:text-7xl">
             Resumes that look the part.
           </h1>
-          <p className="mx-auto mt-6 max-w-md text-balance text-lg text-subtle">
+          <p className="mx-auto mt-5 max-w-md text-balance text-lg text-subtle">
             Pick a template, fill in your story, and watch the PDF update as you type.
           </p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link href="/demo" className="btn btn-primary group h-11 px-5 text-[15px]">
               Try the demo
               <LuArrowRight className="transition group-hover:translate-x-0.5" />
